@@ -1,0 +1,17 @@
+{
+  "name": "web_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Team Orion",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.6",
+    "express": "^4.17.1",
+    "grpc": "^1.24.5"
+  }
+}

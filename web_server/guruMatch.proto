@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package guruMatchPackage;
+
+message Mentee {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    string username = 4;
+    string school = 5;
+    string interest = 6;
+}
+
+message CreateMenteeRequest {
+    Mentee mentee = 1;
+}
+
+message CreateMenteeResponse {
+    bool persisted = 1;
+}
+
+service GuruMatch {
+    rpc CreateMentee (CreateMenteeRequest) returns (CreateMenteeResponse) {};
+}
