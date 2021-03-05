@@ -1,0 +1,4 @@
+# start the mongodb where our data is persist in guruMatchDB/db
+bin/mongod --dbpath guruMatchDB/db  
+
+# then open the Robo 3T (mongodb GUI) and create localhost server and press connect
