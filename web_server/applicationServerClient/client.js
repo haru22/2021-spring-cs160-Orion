@@ -1,7 +1,7 @@
 import grpc from "grpc";
 import protoLoader from "@grpc/proto-loader";
 
-const packageDef = protoLoader.loadSync("./guruMatch.proto",{})
+const packageDef = protoLoader.loadSync("guruMatch.proto",{})
 const grpcObject = grpc.loadPackageDefinition(packageDef);
 const guruMatchPackage = grpcObject.guruMatchPackage;
 
