@@ -1,31 +1,38 @@
-import grpc from "grpc";
-import protoLoader from "@grpc/proto-loader";
+/*
+This is our web server written in express js
+we will call the application server client to send request to 
+application server grpc. 
+*/
 
-const packageDef = protoLoader.loadSync("./guruMatch.proto",{
-    keepCase: true,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true
-   })
-   
-const grpcObject = grpc.loadPackageDefinition(packageDef);
-const guruMatchPackage = grpcObject.guruMatchPackage;
+// express js
+const express = require("express");
+const path = require("path");
+// frontend directory
+const frontendDir = path.join(__dirname, "../frontend");
+// application server client in grpc to interact with our application server
+const grpcClientPath = path.join(__dirname, "../applicationServerClient");
+const grpcClient = require(grpcClientPath + "/client.js");
 
-const server = new grpc.Server();
-server.bind("0.0.0.0:50051", grpc.ServerCredentials.createInsecure());
+const app = express();
+// we use urlencoded for parsing the request body
+app.use(express.urlencoded());
+// server side rendering 
+app.use(express.static(frontendDir));
 
-server.addService(guruMatchPackage.GuruMatch.service, {
-    "CreateMentee": createMentee
-})
+// initializing the server 
+app.listen(3000, function(){
+    console.log("Server is running on port 3000.")
+});
 
-server.start();
-console.log("server starting on port 4000");
+// get request for our homepage or root route
+app.get("/", function(req, res){
+    res.sendFile(frontendDir + "/index.html");
+});
 
-function createMentee (call, callback) {
-    console.log(call.request)
-    const resp = {
-        "persisted": true
-    }
-    callback(null, resp);
-}
+// post request for root route
+app.post("/", function(req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    grpcClient.userLogin(email, password);
+    res.send("Posting the respsonse: " + email)
+});

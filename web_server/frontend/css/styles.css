@@ -1,0 +1,47 @@
+#login-card {
+    text-align: center;
+    margin-left: 50%;
+    margin-top: 1%;
+    width: 40%;
+    height: 57.5rem;
+    font-family: 'Merriweather', serif; 
+    border-radius: 2rem;
+}
+
+.login-h1 {
+    padding-top: 5rem;
+    padding-bottom: 7rem;
+}
+
+.login-h2 {
+    padding-bottom: 5rem;
+}
+
+.form-login {
+    border-radius: 2rem;
+    border-color: transparent ;
+}
+
+#input-login{
+    border-radius: 1rem;
+    border: none;
+    background-color: #f8f7f7;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 70%;
+    height: 4rem;
+    margin-bottom: 2rem;
+    box-shadow: #505c74;
+}
+label {
+    margin-top: 7%;
+}
+
+#btn-override {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #505c74;
+    border: none;
+    margin-top: 13%;
+    width: 70%;
+    height: 4rem;
+    border-radius: 1rem;
+}

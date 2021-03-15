@@ -6,11 +6,10 @@ import sys
 from google.protobuf.json_format import MessageToDict
 
 # importing the automated grpc interface stub
-#sys.path.append("./")
 import guruMatch_pb2 as pb2
 import guruMatch_pb2_grpc as pb2_grpc
-
-#from mongoDatabase.database import GuruMatchDatabase
+sys.path.append("../")
+from mongoDatabase.database import GuruMatchDatabase
 
 
 class GuruMatchService(pb2_grpc.GuruMatchServicer):
@@ -24,7 +23,7 @@ class GuruMatchService(pb2_grpc.GuruMatchServicer):
         # only take dictionary data structure
         menteeDict = list(MessageToDict(request).values())[0]
         # then insert into the mongodb
-        #GuruMatchDatabase.insertNewMentee(menteeDict)
+        GuruMatchDatabase.insertNewMentee(menteeDict)
         # send the response back to client
         response = pb2.CreateMenteeResponse(persisted=True)
         return response
@@ -32,7 +31,7 @@ class GuruMatchService(pb2_grpc.GuruMatchServicer):
 
 def run_server():
     # start the database server
-   # GuruMatchDatabase.initialize()
+    GuruMatchDatabase.initialize()
 
     # start the application server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
