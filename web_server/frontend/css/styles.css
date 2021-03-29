@@ -45,3 +45,148 @@ label {
     height: 4rem;
     border-radius: 1rem;
 }
+
+#welcome-page {
+	position: relative;
+	width: 1440px;
+	height: 1024px;
+
+	background: #4F5D75;
+}
+
+#logo {
+	position: absolute;
+	width: 223.76px;
+	height: 70px;
+	left: 26px;
+	top: 123px;
+
+	background: url(images/logo.png);
+}
+
+#rectangle1 {
+	position: absolute;
+	width: 1134px;
+	height: 964px;
+	left: 276px;
+	top: 30px;
+
+	background: #FFFFFF;
+	border-radius: 50px;
+}
+
+#welcome-msg1 {
+	position: absolute;
+	width: 507px;
+	height: 56px;
+	left: 589px;
+	top: 193px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 56px;
+
+	color: #4F5D75;
+}
+
+#home-btn {
+	position: absolute;
+	width: 123px;
+	height: 29.34px;
+	left: 48px;
+	top: 283px;
+}
+
+#home-txt {
+	position: absolute;
+	width: 65px;
+	height: 28px;
+	left: 106px;
+	top: 284px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #FFFFFF;
+}
+
+
+#profile-btn {
+	position: absolute;
+	width: 124px;
+	height: 34px;
+	left: 48px;
+	top: 372px;
+}
+
+
+#profile-txt {
+	position: absolute;
+	width: 71px;
+	height: 28px;
+	left: 101px;
+	top: 375px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #FFFFFF;
+}
+
+#notif-btn {
+	position: absolute;
+	width: 181px;
+	height: 34px;
+	left: 48px;
+	top: 466px;
+}
+
+#notif-txt {
+	position: absolute;
+	width: 126px;
+	height: 28px;
+	left: 103px;
+	top: 469px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #FFFFFF;
+}
+
+/* Group 6 */
+#msg-btn {
+	position: absolute;
+	width: 157px;
+	height: 34px;
+	left: 48px;
+	top: 560px;
+}
+
+
+#msg-txt {
+	position: absolute;
+	width: 99px;
+	height: 28px;
+	left: 106px;
+	top: 563px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #FFFFFF;
+}
