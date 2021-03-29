@@ -10,11 +10,11 @@
 
 .login-h1 {
     padding-top: 5rem;
-    padding-bottom: 7rem;
+    padding-bottom: 5rem;
 }
 
 .login-h2 {
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
 }
 
 .form-login {
@@ -22,7 +22,7 @@
     border-color: transparent ;
 }
 
-#input-login{
+.input-login{
     border-radius: 1rem;
     border: none;
     background-color: #f8f7f7;
@@ -32,6 +32,7 @@
     margin-bottom: 2rem;
     box-shadow: #505c74;
 }
+
 label {
     margin-top: 7%;
 }
@@ -40,8 +41,28 @@ label {
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: #505c74;
     border: none;
-    margin-top: 13%;
+    margin-top: 5%;
     width: 70%;
     height: 4rem;
     border-radius: 1rem;
+}
+
+.input-register{
+    border-radius: 1rem;
+    border: none;
+    background-color: #f8f7f7;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 70%;
+    height: 4rem;
+    margin-bottom: 1rem;
+    box-shadow: #505c74;
+}
+
+.register-h2 {
+    padding-bottom: 1rem;
+}
+
+.register-h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }

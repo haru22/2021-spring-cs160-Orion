@@ -1,4 +1,5 @@
 /*
+No use for the project
 This is just for a nodejs grpc testing, we will not it. 
 We have webserver called server.js to interact with web browser or client.
 */
