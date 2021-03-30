@@ -64,33 +64,6 @@ label {
 	background: url(images/logo.png);
 }
 
-#rectangle1 {
-	position: absolute;
-	width: 1134px;
-	height: 964px;
-	left: 276px;
-	top: 30px;
-
-	background: #FFFFFF;
-	border-radius: 50px;
-}
-
-#welcome-msg1 {
-	position: absolute;
-	width: 507px;
-	height: 56px;
-	left: 589px;
-	top: 193px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 48px;
-	line-height: 56px;
-
-	color: #4F5D75;
-}
-
 #home-btn {
 	position: absolute;
 	width: 123px;
@@ -115,7 +88,6 @@ label {
 	color: #FFFFFF;
 }
 
-
 #profile-btn {
 	position: absolute;
 	width: 124px;
@@ -123,7 +95,6 @@ label {
 	left: 48px;
 	top: 372px;
 }
-
 
 #profile-txt {
 	position: absolute;
@@ -165,7 +136,6 @@ label {
 	color: #FFFFFF;
 }
 
-/* Group 6 */
 #msg-btn {
 	position: absolute;
 	width: 157px;
@@ -173,7 +143,6 @@ label {
 	left: 48px;
 	top: 560px;
 }
-
 
 #msg-txt {
 	position: absolute;
@@ -189,4 +158,106 @@ label {
 	line-height: 28px;
 
 	color: #FFFFFF;
+}
+
+#line {
+	position: absolute;
+	width: 196px;
+	height: 0px;
+	left: 40px;
+	top: 813px;
+
+	border: 1px solid #BFC0C0;
+}
+
+#uname-and-pp {
+	position: absolute;
+	width: 168px;
+	height: 34px;
+	left: 48px;
+	top: 837px;
+}
+
+#uname-txt1 {
+	position: absolute;
+	width: 110px;
+	height: 28px;
+	left: 106px;
+	top: 840px;
+
+	font-family: Roboto;
+	font-style: bold;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #FFFFFF;
+}
+
+#logout {
+	position: absolute;
+	width: 143px;
+	height: 34px;
+	left: 48px;
+	top: 895px;
+}
+
+#rectangle1 {
+	position: absolute;
+	width: 1134px;
+	height: 964px;
+	left: 276px;
+	top: 30px;
+
+	background: #FFFFFF;
+	border-radius: 50px;
+}
+
+#welcome-msg1 {
+	position: absolute;
+	width: 507px;
+	height: 56px;
+	left: 589px;
+	top: 193px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 48px;
+	line-height: 56px;
+
+	color: #4F5D75;
+}
+
+#uname-txt2 {
+	position: absolute;
+	width: 165px;
+	height: 42px;
+	left: 760px;
+	top: 269px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 36px;
+	line-height: 42px;
+
+	color: #2D3142;
+}
+
+#welcome-msg2 {
+	position: absolute;
+	width: 1047px;
+	height: 56px;
+	left: 319px;
+	top: 781px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+
+	color: #2D3142;
 }
