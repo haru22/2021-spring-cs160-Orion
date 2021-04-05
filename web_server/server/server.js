@@ -3,9 +3,11 @@ This is our web server written in express js
 we will call the application server client to send request to 
 application server grpc. 
 */
-
+// environmental variable
+require('dotenv').config(); 
 // Express js
 const express = require("express");
+const bodyParser = require('body-parser');
 // session to store the message when redirect the route
 const flash = require("connect-flash");
 const session = require("express-session");
@@ -15,6 +17,11 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 //passport 
 const passport = require("passport");
+// google auth
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// facebook auth
+const FacebookStrategy = require('passport-facebook').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
 
 const app = express();
 const path = require("path");
@@ -74,7 +81,8 @@ app.use(express.static(frontendDir));
 // EJS
 app.set("views", frontendDir);
 app.set("view engine", "ejs");
-
+// bodyParser
+app.use(bodyParser.urlencoded({extended:true}));
 // initializing the server
 app.listen(3000, function () {
   console.log("Server is running on port 3000.");
@@ -172,9 +180,12 @@ app.post("/register", function (req, res) {
 });
 
 // get request for home route
-app.get("/home", AuthenticationSuccess, function (req, res) {
+// app.get("/home", AuthenticationSuccess, function (req, res) {
+//   res.render("home");
+// });
+app.get("/home", function(req, res) {
   res.render("home");
-});
+})
 
 // Logout handler
 app.get("/logout", function(req, res) {
@@ -182,3 +193,26 @@ app.get("/logout", function(req, res) {
   req.flash("success_message", "Successfuly Logout");
   res.redirect("login");
 })
+
+// get request for google auth
+app.get("/auth/google",
+  passport.authenticate("google", { scope: ["profile"] }));
+
+// redirect to home
+app.get("/auth/google/home", 
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect("/home");
+  });
+
+// get request for facebook auth
+app.get("/auth/facebook",
+  passport.authenticate("facebook"));
+
+app.get("/auth/facebook/home",
+  passport.authenticate("facebook", { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/home');
+  });
