@@ -10,6 +10,8 @@ test.js
 .register.ejs.icloud
 popupMessages/.messages.ejs.icloud
 web_server/frontend/popupMessages/.messages.ejs.icloud
+__pycache__/
+
 # Logs
 logs
 *.log
