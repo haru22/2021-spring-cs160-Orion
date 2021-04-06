@@ -180,12 +180,12 @@ app.post("/register", function (req, res) {
 });
 
 // get request for home route
-// app.get("/home", AuthenticationSuccess, function (req, res) {
-//   res.render("home");
-// });
-app.get("/home", function(req, res) {
+app.get("/home", AuthenticationSuccess, function (req, res) {
   res.render("home");
-})
+});
+// app.get("/home", function(req, res) {
+//   res.render("home");
+// })
 
 // Logout handler
 app.get("/logout", function(req, res) {
