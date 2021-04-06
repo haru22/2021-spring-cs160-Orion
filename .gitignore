@@ -5,7 +5,11 @@ test-delete/
 */.idea/
 test.js
 .gitignore.swp
-
+.home.ejs.icloud
+.login.ejs.icloud
+.register.ejs.icloud
+popupMessages/.messages.ejs.icloud
+web_server/frontend/popupMessages/.messages.ejs.icloud
 # Logs
 logs
 *.log
