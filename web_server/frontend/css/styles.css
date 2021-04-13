@@ -1,49 +1,166 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #505c74 !important;
+}
+.mg_leftPanel{
+    margin-top: 25px; 
+    margin-bottom:25px;
+}
+.miniText{
+    color:#fff;
+    width:30% !important;
+    float:left;
+    text-align:center;
+    font-size: 13px;
+}
 #login-card {
     text-align: center;
-    margin-left: 50%;
-    margin-top: 1%;
-    width: 40%;
-    height: 57.5rem;
-    font-family: 'Merriweather', serif; 
+    width: 35%;
+    height:100%;
+    font-family: 'Merriweather', sans-serif; 
     border-radius: 2rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 1px;
 }
 
 .login-h1 {
-    padding-top: 5rem;
-    padding-bottom: 7rem;
-}
-
-.login-h2 {
-    padding-bottom: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+    font-weight: 700;
+    font-family: 'Roboto', serif;
+    font-size: 2rem;
+    color: #4f5d75;
 }
 
 .form-login {
     border-radius: 2rem;
     border-color: transparent ;
 }
+.login-h2 {
+    padding-bottom: 2rem;
+    font-family: 'Roboto', serif;
+    font-size: 1.5rem;
+    color: #4f5d75;
+}
 
-#input-login{
+.input-formLogin{
+    width: 316px;
+    height: 36px;
+    border: none;
+    border-radius: 28px;
+    filter: drop-shadow(0px 2px 7px rgba(102,102,102,0.2));
+    background-color: #f8f8f8;
+    margin-bottom:1rem;
+    font-size: 14px;
+    color: #7b819a;
+    font-weight: 400;
+    font-family: "Roboto";
+    text-align: left;
+    text-indent: 2.5rem;
+}
+.input-Username{
+    background-image: url('../img/user.png');
+    background-size:20px 20px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.input-Password{
+    background-image: url('../img/klock.png');
+    background-size:20px 20px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.forgotPL{
+    font-size: 1rem;
+    font-size: 12px;
+    color: #7b819a;
+    font-weight: 400;
+    font-family: "Roboto";
+    text-align: center;
+    width: 8rem;
+    display: block;
+}
+.forgotPL > a{
+    text-decoration: none;
+    color: #7b819a;
+}
+.registerL{
+    font-size: 1rem;
+    font-size: 12px;
+    color: #7b819a;
+    font-weight: 400;
+    font-family: "Roboto";
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top:10px;
+}
+.registerL > a{
+    text-decoration: none;
+    color:#7b819a;
+}
+
+#btn-override {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #4f5d75;
+    border: none;
+    margin-top: 5%;
+    width: 316px;
+    height: 36px;
+    border-radius: 1rem;
+    border-radius: 28px;
+    filter: drop-shadow(0px 2px 7px rgba(102,102,102,0.2));
+    margin-bottom: 2rem;
+}
+
+.input-register{
     border-radius: 1rem;
     border: none;
     background-color: #f8f7f7;
     font-family: Georgia, 'Times New Roman', Times, serif;
     width: 70%;
     height: 4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     box-shadow: #505c74;
 }
-label {
-    margin-top: 7%;
+
+.register-h2 {
+    padding-bottom: 1rem;
 }
 
-#btn-override {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: #505c74;
-    border: none;
-    margin-top: 13%;
-    width: 70%;
-    height: 4rem;
-    border-radius: 1rem;
+.register-h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+h1 {
+    overflow: hidden;
+    text-align: center;
+  }
+  
+separator:before,
+separator:after {
+    background-color: #000;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 20%;
+}
+separator:before {
+    right: 0.5em;
+    margin-left: -20%;
+}
+separator:after {
+    left: 0.5em;
+    margin-right: -20%;
+}
+.extraSpace{
+    margin-bottom:23px;
 }
 
 #welcome-page {
