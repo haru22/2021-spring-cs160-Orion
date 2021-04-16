@@ -21,80 +21,48 @@
     ></script>
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   </head>
-  <body style="background-color: #505c74">
-    <div class="card" id="login-card">
-      <h1 class="register-h1">GuruMatch</h1>
-      <h2 class="register-h2">Register</h2>
-      <%- include('./popupMessages/messages'); %>
-      <form action="/register" method="POST">
-        <div>
-          <input
-            type="firstName"
-            class="input-register"
-            name="firstName"
-            placeholder="First Name"
-            value="<%= typeof firstName != 'undefined' ? firstName : '' %>"
-          />
-        </div>
-        <div>
-          <input
-            type="lastName"
-            class="input-register"
-            name="lastName"
-            placeholder="Last Name"
-            value="<%= typeof lastName != 'undefined' ? lastName : '' %>"
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            class="input-register"
-            name="email"
-            placeholder="Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            class="input-register"
-            name="password"
-            placeholder="Create Password"
-            value="<%= typeof password != 'undefined' ? password : '' %>"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            class="input-register"
-            name="passwordConfirm"
-            placeholder="Confirm Password"
-            value="<%= typeof passwordConfirm != 'undefined' ? passwordConfirm : '' %>"
-          />
-        </div>
-        <a href="login.html"><center>Already have account?</center></a>
 
-        <button type="submit" class="btn btn-primary" id="btn-override">
-          Register
-        </button>
-      </form>
-      <div>
-        <a class="btn btn-block" href="/auth/google" role="button">
-          <i class=""></i>
-          Register with Google
-        </a>
-        <a class="btn btn-block" href="/auth/facebook" role="button">
-          <i class=""></i>
-          Register with Facebook
-        </a>
+  <body>
+    <div class="row mx-auto" class="height:100%;">
+      <div class="col-md-6 mx-auto leftPanel">
+        <div class="row mx-auto" style="margin-top: -10px;height:35%;"><img src="../img/booksLogo.png" style="width:75px; height:60px; margin: auto;"></div>
+        <div class="row" style="height:10%;">
+          <span class="miniText">GURUMACH</span>
+          <span class="miniText">GURUMACH</span>
+          <span class="miniText">GURUMACH</span>
+        </div>
+        <div class="row mx-auto" style="height:50%;"><img src="../img/pStudents.png" style="width:80%; height: 100%; margin:0 auto;"></div>
       </div>
-
-   
+      <div class="card col-md-6 h-100 mx-auto" id="login-card">
+        <h1 class="login-h1">GuruMatch</h1>
+        <h2 class="login-h2">Register</h2>
+        <%- include('./popupMessages/messages'); %>
+        <form action="/register" method="POST" style="margin-bottom:20px">
+          <div>
+            <input type="text" class="input-formLogin extraSpace" name="firstName" placeholder="First Name" value="<%= typeof firstName != 'undefined' ? firstName : '' %>"/>
+          </div>
+          <div>
+            <input type="text" class="input-formLogin extraSpace" name="lastName" placeholder="Last Name" value="<%= typeof lastName != 'undefined' ? lastName : '' %>"/>
+          </div>
+          <div>
+            <input type="email" class="input-formLogin extraSpace" name="email" placeholder="Email" value="<%= typeof email != 'undefined' ? email : '' %>"/>
+          </div>
+          <div>
+            <input type="password" class="input-formLogin extraSpace" name="password" placeholder="Create Password" value="<%= typeof password != 'undefined' ? password : '' %>"/>
+          </div>
+          <div>
+            <input type="password" class="input-formLogin extraSpace" name="passwordConfirm" placeholder="Confirm Password" value="<%= typeof passwordConfirm != 'undefined' ? passwordConfirm : '' %>"/>
+          </div>
+          <button type="submit" class="btn btn-primary" id="btn-override">
+            Register
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
