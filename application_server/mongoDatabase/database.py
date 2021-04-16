@@ -16,6 +16,12 @@ class GuruMatchDatabase(object):
         print("inserting")
         GuruMatchDatabase.DATABASE['mentee-db'].insert_one(menteeInfo)
 
+    @staticmethod
+    def GetUserName():
+        print("getting user name")
+        user = GuruMatchDatabase.DATABASE['mentee-db'].find_one()
+        return user
+
 
 # if __name__ == "__main__":
 #     GuruMatchDatabase.initialize()
