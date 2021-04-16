@@ -1,6 +1,10 @@
+require('dotenv').config(); 
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
 
 // User model  (mongoDB)
 const User = require("../database/user");
@@ -42,4 +46,33 @@ module.exports = function(passport) {
           done(err, user);
         });
     });
+
+    // google auth
+    passport.use(new GoogleStrategy({
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/google/home",
+        userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+      },
+      function(accessToken, refreshToken, profile, cb) {
+        console.log(profile);
+        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+          return cb(err, user);
+        });
+      }
+    ));
+
+    // facebook auth
+    passport.use(new FacebookStrategy({
+        clientID: process.env.FACEBOOK_APP_ID,
+        clientSecret: process.env.FACEBOOK_APP_SECRET,
+        callbackURL: "http://localhost:3000/auth/facebook/home"
+      },
+      function(accessToken, refreshToken, profile, cb) {
+        console.log(profile);
+        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+          return cb(err, user);
+        });
+      }
+    ));
 }
