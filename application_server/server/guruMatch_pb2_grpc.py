@@ -19,12 +19,23 @@ class GuruMatchStub(object):
                 request_serializer=guruMatch__pb2.CreateMenteeRequest.SerializeToString,
                 response_deserializer=guruMatch__pb2.CreateMenteeResponse.FromString,
                 )
+        self.GetUserName = channel.unary_unary(
+                '/guruMatchPackage.GuruMatch/GetUserName',
+                request_serializer=guruMatch__pb2.UserID.SerializeToString,
+                response_deserializer=guruMatch__pb2.GetUserNameResponse.FromString,
+                )
 
 
 class GuruMatchServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CreateMentee(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetUserName(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -37,6 +48,11 @@ def add_GuruMatchServicer_to_server(servicer, server):
                     servicer.CreateMentee,
                     request_deserializer=guruMatch__pb2.CreateMenteeRequest.FromString,
                     response_serializer=guruMatch__pb2.CreateMenteeResponse.SerializeToString,
+            ),
+            'GetUserName': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUserName,
+                    request_deserializer=guruMatch__pb2.UserID.FromString,
+                    response_serializer=guruMatch__pb2.GetUserNameResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -62,5 +78,22 @@ class GuruMatch(object):
         return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/CreateMentee',
             guruMatch__pb2.CreateMenteeRequest.SerializeToString,
             guruMatch__pb2.CreateMenteeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetUserName(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/GetUserName',
+            guruMatch__pb2.UserID.SerializeToString,
+            guruMatch__pb2.GetUserNameResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
