@@ -1,5 +1,3 @@
-//python -m grpc_tools.protoc -I./proto --python_out=. --grpc_python_out=. ./proto/guruMatch.proto
-
 syntax = "proto3";
 
 package guruMatchPackage;
@@ -21,6 +19,16 @@ message CreateMenteeResponse {
     bool persisted = 1;
 }
 
-service GuruMatch {
-    rpc CreateMentee (CreateMenteeRequest) returns (CreateMenteeResponse);
+message UserID {
+    int32 id = 1;
 }
+
+message GetUserNameResponse {
+    string userName = 1;
+}
+
+service GuruMatch {
+    rpc CreateMentee (CreateMenteeRequest) returns (CreateMenteeResponse) {};
+    rpc GetUserName (UserID) returns (GetUserNameResponse) {};
+}
+

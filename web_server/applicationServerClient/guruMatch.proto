@@ -19,6 +19,16 @@ message CreateMenteeResponse {
     bool persisted = 1;
 }
 
+message UserID {
+    int32 id = 1;
+}
+
+message GetUserNameResponse {
+    string userName = 1;
+}
+
 service GuruMatch {
     rpc CreateMentee (CreateMenteeRequest) returns (CreateMenteeResponse) {};
+    rpc GetUserName (UserID) returns (GetUserNameResponse) {};
 }
+

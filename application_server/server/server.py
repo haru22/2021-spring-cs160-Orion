@@ -28,6 +28,20 @@ class GuruMatchService(pb2_grpc.GuruMatchServicer):
         response = pb2.CreateMenteeResponse(persisted=True)
         return response
 
+    def GetUserName(self, request, context):
+        # CreateMentee service will create the new mentee and persist the new mentee data in mongoDatabase
+        print("get user name")
+        print(request)
+        # here we are converting the protobuf response to the python dictionary because pymongo
+        # only take dictionary data structure
+        menteeDict = list(MessageToDict(request).values())[0]
+        # then insert into the mongodb
+        user = GuruMatchDatabase.GetUserName()
+        print(user)
+        # send the response back to client
+        response = pb2.GetUserNameResponse({"userName": user.username})
+        return response
+
 
 def run_server():
     # start the database server
