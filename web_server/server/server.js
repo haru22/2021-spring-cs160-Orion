@@ -156,6 +156,7 @@ app.post("/register", function (req, res) {
           const newUser = new User({
             email: email,
             password: password,
+            username: firstName + " " + lastName,
           });
 
           // let hash the password
