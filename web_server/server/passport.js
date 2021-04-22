@@ -47,7 +47,7 @@ module.exports = function(passport) {
         });
     });
 
-    // google auth
+    // google OAuth
     passport.use(new GoogleStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
@@ -55,21 +55,19 @@ module.exports = function(passport) {
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
       },
       function(accessToken, refreshToken, profile, cb) {
-        console.log(profile);
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        User.findOrCreate({ username: profile.displayName, googleId: profile.id }, function (err, user) {
           return cb(err, user);
         });
       }
     ));
 
-    // facebook auth
+    // facebook OAuth
     passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
         callbackURL: "http://localhost:3000/auth/facebook/home"
       },
       function(accessToken, refreshToken, profile, cb) {
-        console.log(profile);
         User.findOrCreate({ facebookId: profile.id }, function (err, user) {
           return cb(err, user);
         });

@@ -403,3 +403,69 @@ separator:after {
 	box-shadow: 2px 0px 6px rgba(102, 102, 102, 0.2);
 	border-radius: 50px;
 }
+
+#prof-profile {
+	position: absolute;
+	width: 96px;
+	height: 38px;
+	left: 294px;
+	top: 94px;
+}
+
+#prof-pic {
+	position: absolute;
+width: 250px;
+height: 250px;
+left: 298px;
+top: 156px;
+
+background: url(.jpg);
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 50px;
+}
+
+#prof-name {
+	position: absolute;
+	width: 273px;
+	height: 28px;
+	left: 286px;
+	top: 430px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #2D3142;
+}
+
+#prof-bio {
+	position: absolute;
+	width: 110px;
+	height: 28px;
+	left: 616px;
+	top: 113px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+
+	color: #2D3142;
+}
+
+#prof-bio-text {
+	position: absolute;
+	width: 520px;
+	height: 24px;
+	left: 616px;
+	top: 157px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 24px;
+}
