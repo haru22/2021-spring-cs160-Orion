@@ -55,7 +55,6 @@ module.exports = function(passport) {
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
       },
       function(accessToken, refreshToken, profile, cb) {
-        console.log(profile);
         User.findOrCreate({ username: profile.displayName, googleId: profile.id }, function (err, user) {
           return cb(err, user);
         });
@@ -69,7 +68,6 @@ module.exports = function(passport) {
         callbackURL: "http://localhost:3000/auth/facebook/home"
       },
       function(accessToken, refreshToken, profile, cb) {
-        console.log(profile);
         User.findOrCreate({ facebookId: profile.id }, function (err, user) {
           return cb(err, user);
         });
