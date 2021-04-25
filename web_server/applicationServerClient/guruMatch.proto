@@ -2,33 +2,16 @@ syntax = "proto3";
 
 package guruMatchPackage;
 
-message Mentee {
-    int32 id = 1;
+message CreateUserRequest {
+    string id = 1;
     string name = 2;
-    string email = 3;
-    string username = 4;
-    string school = 5;
-    string interest = 6;
 }
 
-message CreateMenteeRequest {
-    Mentee mentee = 1;
-}
-
-message CreateMenteeResponse {
-    bool persisted = 1;
-}
-
-message UserID {
-    int32 id = 1;
-}
-
-message GetUserNameResponse {
-    string userName = 1;
+message SuccessResponse {
+    bool success = 1;
 }
 
 service GuruMatch {
-    rpc CreateMentee (CreateMenteeRequest) returns (CreateMenteeResponse) {};
-    rpc GetUserName (UserID) returns (GetUserNameResponse) {};
+    rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
 }
 

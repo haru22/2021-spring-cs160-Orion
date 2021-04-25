@@ -31,7 +31,7 @@ require("./passport")(passport);
 
 const {AuthenticationSuccess} = require("./authentication");
 
-// session middleware
+// session middleware which use the MemoryStorage 
 app.use(session({
     secret: 'guruMatch secret',
     resave: false,
@@ -63,14 +63,14 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.set("useCreateIndex", true);
 
 // User model
-const User = require("../database/user");
+const {User, GuruMatchDBSchema} = require("../database/user");
 
 // frontend directory
 const frontendDir = path.join(__dirname, "../frontend");
 
 // application server client in grpc to interact with our application server
 const grpcClientPath = path.join(__dirname, "../applicationServerClient");
-const grpcClient = require(grpcClientPath + "/client.js");
+const grpcClient = require(grpcClientPath + "/client");
 
 // we use urlencoded for parsing the request body
 app.use(express.urlencoded({ extended: false }));
@@ -156,7 +156,6 @@ app.post("/register", function (req, res) {
           const newUser = new User({
             email: email,
             password: password,
-            username: firstName + " " + lastName,
           });
 
           // let hash the password
@@ -168,6 +167,8 @@ app.post("/register", function (req, res) {
                 // let save the newUser to database
                 newUser.save()
                     .then(user => {
+                        // Let send the request to application server through grpc and with data
+                        grpcClient.createUser(user._id.toString(), firstName + lastName);
                         req.flash("success_message", "You are now register and can log in");
                         res.redirect("login");
                     })
@@ -184,9 +185,6 @@ app.post("/register", function (req, res) {
 app.get("/home", AuthenticationSuccess, function (req, res) {
   res.render("home");
 });
-// app.get("/home", function(req, res) {
-//   res.render("home");
-// })
 
 // Logout handler
 app.get("/logout", function(req, res) {
@@ -203,6 +201,8 @@ app.get("/auth/google",
 app.get("/auth/google/home", 
   passport.authenticate("google", { failureRedirect: "/login" }),
   function(req, res) {
+    //console.log(req.authInfo._json)
+    grpcClient.createUser(req.user._id.toString(), req.authInfo._json.name);
     // Successful authentication, redirect home.
     res.redirect("/home");
   });
@@ -217,3 +217,6 @@ app.get("/auth/facebook/home",
     // Successful authentication, redirect home.
     res.redirect('/home');
   });
+
+
+

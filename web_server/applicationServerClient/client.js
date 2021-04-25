@@ -50,10 +50,19 @@ exports.userLogin = function(email, password) {
     return;
 }*/
 
-client.GetUserName({"id": 1}, (err,response) => {
-    console.log("sending message to application server")
-    console.log("recieved From server " + JSON.stringify(response))
-    })
+module.exports = {
+    createUser: (id, name) => {
+        const userRequest = {
+            "id": id,
+            "name": name,
+        }
+        client.CreateUser(userRequest, (err, response) => {
+            console.log("recieved From Server " + JSON.stringify(response))
+        });
+    }
+}
+
+
 
 
 
