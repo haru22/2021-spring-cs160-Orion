@@ -2,7 +2,7 @@ import grpc
 import sys
 
 # importing the automated grpc interface stub
-sys.path.append("./")
+sys.path.append("../server")
 import guruMatch_pb2 as pb2
 import guruMatch_pb2_grpc as pb2_grpc
 
@@ -13,18 +13,13 @@ channel = grpc.insecure_channel("localhost:50051")
 stub = pb2_grpc.GuruMatchStub(channel)
 
 # create a request
-newMentee = pb2.Mentee(
-    id=0,
+newUser = pb2.CreateUserRequest(
+    id="1233e334",
     name="Tenzin Gyatso",
-    email="dalai.lama@gmail.com",
-    username="gyatso",
-    school="SJSU",
-    interest="Computer Science"
 )
-newMenteeRequest = pb2.CreateMenteeRequest(mentee=newMentee)
 
 # make request
-response = stub.CreateMentee(newMenteeRequest)
+response = stub.CreateUser(newUser)
 
 print("The respnse is " + str(response))
 

@@ -15,6 +15,7 @@ from mongoDatabase.database import GuruMatchDatabase
 class GuruMatchService(pb2_grpc.GuruMatchServicer):
     # adding service to the server
 
+    """
     def CreateMentee(self, request, context):
         # CreateMentee service will create the new mentee and persist the new mentee data in mongoDatabase
         print("asdfasdf")
@@ -41,6 +42,14 @@ class GuruMatchService(pb2_grpc.GuruMatchServicer):
         # send the response back to client
         response = pb2.GetUserNameResponse({"userName": user.username})
         return response
+    """
+    
+    def CreateUser(self, request, context):
+        GuruMatchDatabase.insertNewMentee({"_id": request.id, "name": request.name})
+        response = pb2.SuccessResponse(success = True)
+        return response
+    
+
 
 
 def run_server():
@@ -50,7 +59,7 @@ def run_server():
     # start the application server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_GuruMatchServicer_to_server(GuruMatchService(), server)
-    server.add_insecure_port("[::]:50051")
+    server.add_insecure_port("localhost:50051")
     server.start()
     server.wait_for_termination()
 

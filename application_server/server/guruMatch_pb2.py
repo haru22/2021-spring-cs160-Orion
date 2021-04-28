@@ -19,58 +19,30 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"e\n\x06Mentee\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x10\n\x08username\x18\x04 \x01(\t\x12\x0e\n\x06school\x18\x05 \x01(\t\x12\x10\n\x08interest\x18\x06 \x01(\t\"?\n\x13\x43reateMenteeRequest\x12(\n\x06mentee\x18\x01 \x01(\x0b\x32\x18.guruMatchPackage.Mentee\")\n\x14\x43reateMenteeResponse\x12\x11\n\tpersisted\x18\x01 \x01(\x08\"\x14\n\x06UserID\x12\n\n\x02id\x18\x01 \x01(\x05\"\'\n\x13GetUserNameResponse\x12\x10\n\x08userName\x18\x01 \x01(\t2\xbe\x01\n\tGuruMatch\x12_\n\x0c\x43reateMentee\x12%.guruMatchPackage.CreateMenteeRequest\x1a&.guruMatchPackage.CreateMenteeResponse\"\x00\x12P\n\x0bGetUserName\x12\x18.guruMatchPackage.UserID\x1a%.guruMatchPackage.GetUserNameResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x63\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x62\x06proto3'
 )
 
 
 
 
-_MENTEE = _descriptor.Descriptor(
-  name='Mentee',
-  full_name='guruMatchPackage.Mentee',
+_CREATEUSERREQUEST = _descriptor.Descriptor(
+  name='CreateUserRequest',
+  full_name='guruMatchPackage.CreateUserRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='guruMatchPackage.Mentee.id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      name='id', full_name='guruMatchPackage.CreateUserRequest.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='name', full_name='guruMatchPackage.Mentee.name', index=1,
+      name='name', full_name='guruMatchPackage.CreateUserRequest.name', index=1,
       number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='email', full_name='guruMatchPackage.Mentee.email', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='username', full_name='guruMatchPackage.Mentee.username', index=3,
-      number=4, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='school', full_name='guruMatchPackage.Mentee.school', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='interest', full_name='guruMatchPackage.Mentee.interest', index=5,
-      number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -88,52 +60,20 @@ _MENTEE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=37,
-  serialized_end=138,
+  serialized_end=82,
 )
 
 
-_CREATEMENTEEREQUEST = _descriptor.Descriptor(
-  name='CreateMenteeRequest',
-  full_name='guruMatchPackage.CreateMenteeRequest',
+_SUCCESSRESPONSE = _descriptor.Descriptor(
+  name='SuccessResponse',
+  full_name='guruMatchPackage.SuccessResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='mentee', full_name='guruMatchPackage.CreateMenteeRequest.mentee', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=140,
-  serialized_end=203,
-)
-
-
-_CREATEMENTEERESPONSE = _descriptor.Descriptor(
-  name='CreateMenteeResponse',
-  full_name='guruMatchPackage.CreateMenteeResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='persisted', full_name='guruMatchPackage.CreateMenteeResponse.persisted', index=0,
+      name='success', full_name='guruMatchPackage.SuccessResponse.success', index=0,
       number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
@@ -151,116 +91,27 @@ _CREATEMENTEERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=205,
-  serialized_end=246,
+  serialized_start=84,
+  serialized_end=118,
 )
 
-
-_USERID = _descriptor.Descriptor(
-  name='UserID',
-  full_name='guruMatchPackage.UserID',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='id', full_name='guruMatchPackage.UserID.id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=248,
-  serialized_end=268,
-)
-
-
-_GETUSERNAMERESPONSE = _descriptor.Descriptor(
-  name='GetUserNameResponse',
-  full_name='guruMatchPackage.GetUserNameResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='userName', full_name='guruMatchPackage.GetUserNameResponse.userName', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=270,
-  serialized_end=309,
-)
-
-_CREATEMENTEEREQUEST.fields_by_name['mentee'].message_type = _MENTEE
-DESCRIPTOR.message_types_by_name['Mentee'] = _MENTEE
-DESCRIPTOR.message_types_by_name['CreateMenteeRequest'] = _CREATEMENTEEREQUEST
-DESCRIPTOR.message_types_by_name['CreateMenteeResponse'] = _CREATEMENTEERESPONSE
-DESCRIPTOR.message_types_by_name['UserID'] = _USERID
-DESCRIPTOR.message_types_by_name['GetUserNameResponse'] = _GETUSERNAMERESPONSE
+DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
+DESCRIPTOR.message_types_by_name['SuccessResponse'] = _SUCCESSRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Mentee = _reflection.GeneratedProtocolMessageType('Mentee', (_message.Message,), {
-  'DESCRIPTOR' : _MENTEE,
+CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEUSERREQUEST,
   '__module__' : 'guruMatch_pb2'
-  # @@protoc_insertion_point(class_scope:guruMatchPackage.Mentee)
+  # @@protoc_insertion_point(class_scope:guruMatchPackage.CreateUserRequest)
   })
-_sym_db.RegisterMessage(Mentee)
+_sym_db.RegisterMessage(CreateUserRequest)
 
-CreateMenteeRequest = _reflection.GeneratedProtocolMessageType('CreateMenteeRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEMENTEEREQUEST,
+SuccessResponse = _reflection.GeneratedProtocolMessageType('SuccessResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SUCCESSRESPONSE,
   '__module__' : 'guruMatch_pb2'
-  # @@protoc_insertion_point(class_scope:guruMatchPackage.CreateMenteeRequest)
+  # @@protoc_insertion_point(class_scope:guruMatchPackage.SuccessResponse)
   })
-_sym_db.RegisterMessage(CreateMenteeRequest)
-
-CreateMenteeResponse = _reflection.GeneratedProtocolMessageType('CreateMenteeResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CREATEMENTEERESPONSE,
-  '__module__' : 'guruMatch_pb2'
-  # @@protoc_insertion_point(class_scope:guruMatchPackage.CreateMenteeResponse)
-  })
-_sym_db.RegisterMessage(CreateMenteeResponse)
-
-UserID = _reflection.GeneratedProtocolMessageType('UserID', (_message.Message,), {
-  'DESCRIPTOR' : _USERID,
-  '__module__' : 'guruMatch_pb2'
-  # @@protoc_insertion_point(class_scope:guruMatchPackage.UserID)
-  })
-_sym_db.RegisterMessage(UserID)
-
-GetUserNameResponse = _reflection.GeneratedProtocolMessageType('GetUserNameResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETUSERNAMERESPONSE,
-  '__module__' : 'guruMatch_pb2'
-  # @@protoc_insertion_point(class_scope:guruMatchPackage.GetUserNameResponse)
-  })
-_sym_db.RegisterMessage(GetUserNameResponse)
+_sym_db.RegisterMessage(SuccessResponse)
 
 
 
@@ -271,26 +122,16 @@ _GURUMATCH = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=312,
-  serialized_end=502,
+  serialized_start=120,
+  serialized_end=219,
   methods=[
   _descriptor.MethodDescriptor(
-    name='CreateMentee',
-    full_name='guruMatchPackage.GuruMatch.CreateMentee',
+    name='CreateUser',
+    full_name='guruMatchPackage.GuruMatch.CreateUser',
     index=0,
     containing_service=None,
-    input_type=_CREATEMENTEEREQUEST,
-    output_type=_CREATEMENTEERESPONSE,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='GetUserName',
-    full_name='guruMatchPackage.GuruMatch.GetUserName',
-    index=1,
-    containing_service=None,
-    input_type=_USERID,
-    output_type=_GETUSERNAMERESPONSE,
+    input_type=_CREATEUSERREQUEST,
+    output_type=_SUCCESSRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

@@ -4,10 +4,10 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
-const findOrCreate = require('mongoose-findorcreate');
+//const findOrCreate = require('mongoose-findorcreate');
 
 // User model  (mongoDB)
-const User = require("../database/user");
+const {User, GuruMatchDBSchema} = require("../database/user");
 
 module.exports = function(passport) {
     passport.use(
@@ -55,8 +55,9 @@ module.exports = function(passport) {
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
       },
       function(accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ username: profile.displayName, googleId: profile.id }, function (err, user) {
-          return cb(err, user);
+        User.findOrCreate({googleId: profile.id }, function (err, user) {
+          //console.log(user);
+          return cb(err, user, profile);
         });
       }
     ));
