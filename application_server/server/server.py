@@ -12,7 +12,7 @@ sys.path.append("../")
 from mongoDatabase.database import GuruMatchDatabase
 
 
-class GuruMatchService(pb2_grpc.GuruMatchServicer):
+class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
     # adding service to the server
 
     """
@@ -45,20 +45,41 @@ class GuruMatchService(pb2_grpc.GuruMatchServicer):
     """
     
     def CreateUser(self, request, context):
-        GuruMatchDatabase.insertNewMentee({"_id": request.id, "name": request.name})
+        GuruMatchDatabase.insertNewUser({"_id": request.id, "name": request.name})
         response = pb2.SuccessResponse(success = True)
         return response
     
+    def IsUsernameExist(self, request, context):
+        userID = request.id
+        print(userID)
+        isUserThere = GuruMatchDatabase.isUsernameExist(userID)
+        print("response from the databaes is " + str(isUserThere))
+        response = pb2.SuccessResponse(success = isUserThere)
+        return response
+    
+    def StoreUserForm(self, request, context):
+        print("FORMFORMRFOMR")
+        GuruMatchDatabase.insertUserForm(
+            {
+                "_id": request.id,
+                "username": request.username,
+                "userBio": request.userBio,
+                "userDescription": request.userDescription,
+                "userSkill": request.userSkill,
+                "userIndustry": request.userIndustry,
+                "userTag": request.userTag,
+            })
+        response = pb2.SuccessResponse(success = True)
+        return response
 
-
-
+    
 def run_server():
     # start the database server
     GuruMatchDatabase.initialize()
 
     # start the application server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    pb2_grpc.add_GuruMatchServicer_to_server(GuruMatchService(), server)
+    pb2_grpc.add_GuruMatchServicer_to_server(GuruMatchServicer(), server)
     server.add_insecure_port("localhost:50051")
     server.start()
     server.wait_for_termination()

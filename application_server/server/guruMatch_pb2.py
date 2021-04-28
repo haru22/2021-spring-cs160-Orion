@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x63\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x05\"\x1b\n\rIDonlymessage\x12\n\n\x02id\x18\x01 \x01(\t\"\x90\x01\n\x0cUserFormData\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x0f\n\x07userBio\x18\x03 \x01(\t\x12\x17\n\x0fuserDescription\x18\x04 \x01(\t\x12\x11\n\tuserSkill\x18\x05 \x01(\t\x12\x14\n\x0cuserIndustry\x18\x06 \x01(\t\x12\x0f\n\x07userTag\x18\x07 \x01(\t2\x92\x02\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12W\n\x0fIsUsernameExist\x12\x1f.guruMatchPackage.IDonlymessage\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12T\n\rStoreUserForm\x12\x1e.guruMatchPackage.UserFormData\x1a!.guruMatchPackage.SuccessResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -74,8 +74,8 @@ _SUCCESSRESPONSE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='success', full_name='guruMatchPackage.SuccessResponse.success', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -95,8 +95,116 @@ _SUCCESSRESPONSE = _descriptor.Descriptor(
   serialized_end=118,
 )
 
+
+_IDONLYMESSAGE = _descriptor.Descriptor(
+  name='IDonlymessage',
+  full_name='guruMatchPackage.IDonlymessage',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='guruMatchPackage.IDonlymessage.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=120,
+  serialized_end=147,
+)
+
+
+_USERFORMDATA = _descriptor.Descriptor(
+  name='UserFormData',
+  full_name='guruMatchPackage.UserFormData',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='guruMatchPackage.UserFormData.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='username', full_name='guruMatchPackage.UserFormData.username', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userBio', full_name='guruMatchPackage.UserFormData.userBio', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userDescription', full_name='guruMatchPackage.UserFormData.userDescription', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userSkill', full_name='guruMatchPackage.UserFormData.userSkill', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userIndustry', full_name='guruMatchPackage.UserFormData.userIndustry', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='userTag', full_name='guruMatchPackage.UserFormData.userTag', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=150,
+  serialized_end=294,
+)
+
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
 DESCRIPTOR.message_types_by_name['SuccessResponse'] = _SUCCESSRESPONSE
+DESCRIPTOR.message_types_by_name['IDonlymessage'] = _IDONLYMESSAGE
+DESCRIPTOR.message_types_by_name['UserFormData'] = _USERFORMDATA
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest', (_message.Message,), {
@@ -113,6 +221,20 @@ SuccessResponse = _reflection.GeneratedProtocolMessageType('SuccessResponse', (_
   })
 _sym_db.RegisterMessage(SuccessResponse)
 
+IDonlymessage = _reflection.GeneratedProtocolMessageType('IDonlymessage', (_message.Message,), {
+  'DESCRIPTOR' : _IDONLYMESSAGE,
+  '__module__' : 'guruMatch_pb2'
+  # @@protoc_insertion_point(class_scope:guruMatchPackage.IDonlymessage)
+  })
+_sym_db.RegisterMessage(IDonlymessage)
+
+UserFormData = _reflection.GeneratedProtocolMessageType('UserFormData', (_message.Message,), {
+  'DESCRIPTOR' : _USERFORMDATA,
+  '__module__' : 'guruMatch_pb2'
+  # @@protoc_insertion_point(class_scope:guruMatchPackage.UserFormData)
+  })
+_sym_db.RegisterMessage(UserFormData)
+
 
 
 _GURUMATCH = _descriptor.ServiceDescriptor(
@@ -122,8 +244,8 @@ _GURUMATCH = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=120,
-  serialized_end=219,
+  serialized_start=297,
+  serialized_end=571,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateUser',
@@ -131,6 +253,26 @@ _GURUMATCH = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_CREATEUSERREQUEST,
+    output_type=_SUCCESSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='IsUsernameExist',
+    full_name='guruMatchPackage.GuruMatch.IsUsernameExist',
+    index=1,
+    containing_service=None,
+    input_type=_IDONLYMESSAGE,
+    output_type=_SUCCESSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='StoreUserForm',
+    full_name='guruMatchPackage.GuruMatch.StoreUserForm',
+    index=2,
+    containing_service=None,
+    input_type=_USERFORMDATA,
     output_type=_SUCCESSRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,

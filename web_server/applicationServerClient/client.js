@@ -1,54 +1,16 @@
-/*
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
-
-const packageDef = protoLoader.loadSync("./guruMatch.proto", {});
-const grpcObject = grpc.loadPackageDefinition(packageDef);
-const guruMatchPackage = grpcObject.guruMatchPackage;
-
-const client = new guruMatchPackage.GuruMatch("localhost:50051", grpc.credentials.createInsecure());
-
-const newMentee = {
-    "id":1,
-    "name":"John Wick",
-    "email":"JohnWick@gmail.com",
-    "username":"JohnTheKiller",
-    "school":"Avenger-B",
-    "interest":"Martial Arts"
-}
-
-client.CreateMentee({"mentee": newMentee}, (err, response) => {
-    console.log("recieved From server " + JSON.stringify(response))
-})
-*/
-
-const grpc = require("grpc");
-const protoLoader = require("@grpc/proto-loader");
+const caller = require("grpc-caller");
 const { response } = require("express");
 const protopath = __dirname + "/guruMatch.proto"
+const client = caller("localhost:50051", protopath, "GuruMatch");
+/*
 const packageDef = protoLoader.loadSync(protopath, {});
 const grpcObject = grpc.loadPackageDefinition(packageDef);
 const guruMatchPackage = grpcObject.guruMatchPackage;
 
 const client = new guruMatchPackage.GuruMatch("localhost:50051", grpc.credentials.createInsecure());
-/*
-exports.userLogin = function(email, password) {
-    console.log(email + " password: " + password);
-    const newMentee = {
-        "id": 1,
-        "name":"John Wick",
-        "email":"JohnWick@gmail.com",
-        "username":"JohnTheKiller",
-        "school":"Avenger-B",
-        "interest":"Martial Arts"
-    }
-    
-    
-    client.CreateMentee({"mentee": newMentee}, (err, response) => {
-        console.log("recieved From server " + JSON.stringify(response))
-    })
-    return;
-}*/
+*/
 
 module.exports = {
     createUser: (id, name) => {
@@ -59,6 +21,36 @@ module.exports = {
         client.CreateUser(userRequest, (err, response) => {
             console.log("recieved From Server " + JSON.stringify(response))
         });
+    },
+
+    isUsernameExist: async (id) => {
+        const grpcRequest = {
+            "id": id
+        }
+        // if usernameExist is 2, that means user haven't set up the form
+        // if 1, then show the homepage
+        let usernameExist = 2;
+        usernameExist = await client.IsUsernameExist(grpcRequest);//.then(res => {usernameExist = res});
+        console.log("Hello " + usernameExist.success)
+        return usernameExist.success;
+    },
+
+    storeUserForm: (id, username, user_bio, user_description, 
+        user_skill, user_industry, user_tag) => {
+            const grpcRequest = {
+                "id": id,
+                "username": username,
+                "userBio": user_bio,
+                "userDescription": user_description,
+                "userSkill": user_skill,
+                "userIndustry": user_industry,
+                "userTag": user_tag
+            }
+            let res = false;
+            client.StoreUserForm(grpcRequest, (err, response) => {
+                console.log("recieved from server (StoreUserForm) " + JSON.stringify(response));
+            })
+            return res
     }
 }
 

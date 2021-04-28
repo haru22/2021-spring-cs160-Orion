@@ -163,6 +163,19 @@ separator:after {
     margin-bottom:23px;
 }
 
+#user-form {
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+#userFrom-SubmitButton {
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+  
 // Welcome Page begin
 #btn-override {
     font-family: Georgia, 'Times New Roman', Times, serif;
