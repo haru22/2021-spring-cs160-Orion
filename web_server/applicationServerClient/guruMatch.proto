@@ -7,11 +7,17 @@ message CreateUserRequest {
     string name = 2;
 }
 
+message CreateInterestsRequest {
+    string id = 1;
+    string interest = 2;
+}
+
 message SuccessResponse {
-    bool success = 1;
+    int32 success = 1;
 }
 
 service GuruMatch {
     rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
+    rpc CreateInterests (CreateInterestsRequest) returns (SuccessResponse) {};
 }
 

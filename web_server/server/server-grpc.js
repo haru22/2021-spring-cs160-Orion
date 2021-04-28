@@ -24,11 +24,22 @@ server.bind("0.0.0.0:50051", grpc.ServerCredentials.createInsecure());
 server.addService(guruMatchPackage.GuruMatch.service, {
     "CreateMentee": createMentee
 })
+server.addService(guruMatchPackage.GuruMatch.service, {
+    "CreateInterests": createInterests
+})
 
 server.start();
 console.log("server starting on port 4000");
 
 function createMentee (call, callback) {
+    console.log(call.request)
+    const resp = {
+        "persisted": true
+    }
+    callback(null, resp);
+}
+
+function createInterests (call, callback) {
     console.log(call.request)
     const resp = {
         "persisted": true

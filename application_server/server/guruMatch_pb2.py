@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x63\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"6\n\x16\x43reateInterestsRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08interest\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x05\x32\xc5\x01\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12`\n\x0f\x43reateInterests\x12(.guruMatchPackage.CreateInterestsRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x62\x06proto3'
 )
 
 
@@ -64,18 +64,25 @@ _CREATEUSERREQUEST = _descriptor.Descriptor(
 )
 
 
-_SUCCESSRESPONSE = _descriptor.Descriptor(
-  name='SuccessResponse',
-  full_name='guruMatchPackage.SuccessResponse',
+_CREATEINTERESTSREQUEST = _descriptor.Descriptor(
+  name='CreateInterestsRequest',
+  full_name='guruMatchPackage.CreateInterestsRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='success', full_name='guruMatchPackage.SuccessResponse.success', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
+      name='id', full_name='guruMatchPackage.CreateInterestsRequest.id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='interest', full_name='guruMatchPackage.CreateInterestsRequest.interest', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -92,10 +99,43 @@ _SUCCESSRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=84,
-  serialized_end=118,
+  serialized_end=138,
+)
+
+
+_SUCCESSRESPONSE = _descriptor.Descriptor(
+  name='SuccessResponse',
+  full_name='guruMatchPackage.SuccessResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='guruMatchPackage.SuccessResponse.success', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=140,
+  serialized_end=174,
 )
 
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
+DESCRIPTOR.message_types_by_name['CreateInterestsRequest'] = _CREATEINTERESTSREQUEST
 DESCRIPTOR.message_types_by_name['SuccessResponse'] = _SUCCESSRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -105,6 +145,13 @@ CreateUserRequest = _reflection.GeneratedProtocolMessageType('CreateUserRequest'
   # @@protoc_insertion_point(class_scope:guruMatchPackage.CreateUserRequest)
   })
 _sym_db.RegisterMessage(CreateUserRequest)
+
+CreateInterestsRequest = _reflection.GeneratedProtocolMessageType('CreateInterestsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CREATEINTERESTSREQUEST,
+  '__module__' : 'guruMatch_pb2'
+  # @@protoc_insertion_point(class_scope:guruMatchPackage.CreateInterestsRequest)
+  })
+_sym_db.RegisterMessage(CreateInterestsRequest)
 
 SuccessResponse = _reflection.GeneratedProtocolMessageType('SuccessResponse', (_message.Message,), {
   'DESCRIPTOR' : _SUCCESSRESPONSE,
@@ -122,8 +169,8 @@ _GURUMATCH = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=120,
-  serialized_end=219,
+  serialized_start=177,
+  serialized_end=374,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateUser',
@@ -131,6 +178,16 @@ _GURUMATCH = _descriptor.ServiceDescriptor(
     index=0,
     containing_service=None,
     input_type=_CREATEUSERREQUEST,
+    output_type=_SUCCESSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateInterests',
+    full_name='guruMatchPackage.GuruMatch.CreateInterests',
+    index=1,
+    containing_service=None,
+    input_type=_CREATEINTERESTSREQUEST,
     output_type=_SUCCESSRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,

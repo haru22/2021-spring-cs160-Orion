@@ -19,6 +19,11 @@ class GuruMatchStub(object):
                 request_serializer=guruMatch__pb2.CreateUserRequest.SerializeToString,
                 response_deserializer=guruMatch__pb2.SuccessResponse.FromString,
                 )
+        self.CreateInterests = channel.unary_unary(
+                '/guruMatchPackage.GuruMatch/CreateInterests',
+                request_serializer=guruMatch__pb2.CreateInterestsRequest.SerializeToString,
+                response_deserializer=guruMatch__pb2.SuccessResponse.FromString,
+                )
 
 
 class GuruMatchServicer(object):
@@ -30,12 +35,23 @@ class GuruMatchServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateInterests(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GuruMatchServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CreateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateUser,
                     request_deserializer=guruMatch__pb2.CreateUserRequest.FromString,
+                    response_serializer=guruMatch__pb2.SuccessResponse.SerializeToString,
+            ),
+            'CreateInterests': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateInterests,
+                    request_deserializer=guruMatch__pb2.CreateInterestsRequest.FromString,
                     response_serializer=guruMatch__pb2.SuccessResponse.SerializeToString,
             ),
     }
@@ -61,6 +77,23 @@ class GuruMatch(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/CreateUser',
             guruMatch__pb2.CreateUserRequest.SerializeToString,
+            guruMatch__pb2.SuccessResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateInterests(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/CreateInterests',
+            guruMatch__pb2.CreateInterestsRequest.SerializeToString,
             guruMatch__pb2.SuccessResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

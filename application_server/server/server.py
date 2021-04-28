@@ -46,11 +46,15 @@ class GuruMatchService(pb2_grpc.GuruMatchServicer):
     
     def CreateUser(self, request, context):
         GuruMatchDatabase.insertNewMentee({"_id": request.id, "name": request.name})
-        response = pb2.SuccessResponse(success = True)
+        response = pb2.SuccessResponse(success = 1)
+        return response
+
+    def CreateInterests(self, request, context):
+        res = GuruMatchDatabase.insertInterests({"_id": request.id, "interest": request.interest})
+        print("request: " + request.id + " " + request.interest)
+        response = pb2.SuccessResponse(success = res)
         return response
     
-
-
 
 def run_server():
     # start the database server

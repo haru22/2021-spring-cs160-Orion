@@ -59,10 +59,28 @@ module.exports = {
         client.CreateUser(userRequest, (err, response) => {
             console.log("recieved From Server " + JSON.stringify(response))
         });
+    },
+    createInterests: (id, interest1) => {
+        const interestRequest = {
+            "id": id,
+            "interest": interest1
+        }
+        client.CreateInterests(interestRequest, (err, response) => {
+            console.log("recieved From Server " + JSON.stringify(response))
+        });
     }
 }
+function createInterests (id, interest1) {
+    const interestRequest = {
+        "id": id,
+        "interest": interest1
+    }
+    client.CreateInterests(interestRequest, (err, response) => {
+        console.log("recieved From Server (CreateInterest) : " + response.success)
+    });
+}
 
-
+createInterests("123swe4", "python, Java");
 
 
 

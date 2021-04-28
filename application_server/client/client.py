@@ -18,8 +18,15 @@ newUser = pb2.CreateUserRequest(
     name="Tenzin Gyatso",
 )
 
-# make request
-response = stub.CreateUser(newUser)
+newInterest = pb2.CreateInterestsRequest(
+    id="1233e334",
+    interest="math"
+)
 
-print("The respnse is " + str(response))
+# make request
+#response = stub.CreateUser(newUser)
+response1= stub.CreateInterests(newInterest)
+
+#print("The respnse is " + str(response))
+print("The respnse is " + str(response1))
 
