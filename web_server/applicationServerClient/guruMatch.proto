@@ -8,10 +8,25 @@ message CreateUserRequest {
 }
 
 message SuccessResponse {
-    bool success = 1;
+    int32 success = 1;
+}
+
+message IDonlymessage {
+    string id = 1;
+}
+
+message UserFormData {
+    string id = 1;
+    string username = 2;
+    string userBio = 3;
+    string userDescription = 4;
+    string userSkill = 5;
+    string userIndustry = 6;
+    string userTag = 7;
 }
 
 service GuruMatch {
     rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
+    rpc IsUsernameExist (IDonlymessage) returns (SuccessResponse) {};
+    rpc StoreUserForm (UserFormData) returns (SuccessResponse) {}
 }
-

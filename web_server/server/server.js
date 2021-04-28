@@ -95,10 +95,23 @@ app.get("/login", function (req, res) {
 
 // post request for login route
 app.post("/login", function (req, res, next) {
-  passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/login",
-    failureFlash: true
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, async function(err) {
+      if (err) { return next(err); }
+      // here we will check if the user already fill up the form, 
+      //if not, then redirect to userForm page, else, redirect to home page
+      // if usernameExist is 2, then false, if 1 then true
+      let redirectURI = "/home";
+      const userID = user._id.toString();
+      const usernameExist = await grpcClient.isUsernameExist(userID).catch((err) => console.log("ERROR: ", err))
+      console.log("asdfasdf " + usernameExist)
+      if (usernameExist == 2) {
+        redirectURI = "/userForm/" + userID;
+      }
+      return res.redirect(redirectURI);
+    });
   })(req, res, next);
 });
 
@@ -181,6 +194,19 @@ app.post("/register", function (req, res) {
   }
 });
 
+// get request for user-form 
+app.get("/userForm/:id", AuthenticationSuccess, function(req, res) {
+  res.render("userdataForm", {id: req.params.id})
+});
+
+app.post("/userForm/:id", function(req, res) {
+  const {username, userBio, userDescription, userSkills, userIndustry, userTag} = req.body;
+  console.log(username + " " + userBio+ " " +userDescription+ " " +userSkills+ " " +userIndustry+ " " +userTag)
+  console.log("request: " + req.params.id)
+  const userid = req.params.id
+  grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag);
+});
+
 // get request for home route
 app.get("/home", AuthenticationSuccess, function (req, res) {
   res.render("home");
@@ -200,11 +226,20 @@ app.get("/auth/google",
 // redirect to home
 app.get("/auth/google/home", 
   passport.authenticate("google", { failureRedirect: "/login" }),
-  function(req, res) {
+  async function(req, res) {
     //console.log(req.authInfo._json)
-    grpcClient.createUser(req.user._id.toString(), req.authInfo._json.name);
-    // Successful authentication, redirect home.
-    res.redirect("/home");
+    const userID = req.user._id.toString();
+    await grpcClient.createUser(userID, req.authInfo._json.name);
+    // here we will check if the user already fill up the form, 
+    //if not, then redirect to userForm page, else, redirect to home page
+    // if usernameExist is 2, then false, if 1 then true
+    let redirectURI = "/home";
+    const usernameExist = await grpcClient.isUsernameExist(userID)
+    console.log("asdfasdf " + usernameExist)
+    if (usernameExist == 2) {
+      redirectURI = "/userForm/" + userID;
+    }
+    res.redirect(redirectURI);
   });
 
 // get request for facebook auth

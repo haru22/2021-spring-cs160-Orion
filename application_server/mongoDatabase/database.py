@@ -9,26 +9,42 @@ class GuruMatchDatabase(object):
         print("initializing the MongoDB")
         client = MongoClient(GuruMatchDatabase.URI)
         GuruMatchDatabase.DATABASE = client.get_database("guruMatchDatabase")
-        print(GuruMatchDatabase.DATABASE["mentee-db"].count_documents({}))
+        print(GuruMatchDatabase.DATABASE["user-db"].count_documents({}))
+    
+    @staticmethod
+    def idExist(userID):
+        if GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userID}) is None:
+            return False
+        return True
 
     @staticmethod
-    def insertNewMentee(menteeInfo):
-        print("inserting")
-        GuruMatchDatabase.DATABASE['mentee-db'].insert_one(menteeInfo)
+    def isUsernameExist(userID):
+        # true = 1, false = 2  [because of protobuf consider 0 as default]
+        if len(GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userID}, {"username": 1, "_id": 0})) == 0:
+            return 2
+        return 1
 
     @staticmethod
-    def GetUserName():
-        print("getting user name")
-        user = GuruMatchDatabase.DATABASE['mentee-db'].find_one()
-        return user
+    def insertNewUser(userInfo):
+        print("inserting new User data")
+        GuruMatchDatabase.DATABASE['user-db'].insert_one(userInfo)
 
-
-# if __name__ == "__main__":
-#     GuruMatchDatabase.initialize()
-#     GuruMatchDatabase.insertNewMentee({"name": "Tenzin Wangpo"})
-
-
+    @staticmethod
+    def insertUserForm(userFormData):
+        print("inserting User Form data")
+        # we dont need to check the userId, because we authenticate the use before using this 
+        # function and userID is send by login where login extract the userId from database, so userID will always be valid
+        GuruMatchDatabase.DATABASE["user-db"].update_one(
+            {"_id":userFormData["_id"]}, 
+            {
+                "$set":userFormData
+            })
         
+
+GuruMatchDatabase.initialize()
+print(GuruMatchDatabase.isUsernameExist("60891c85759b8d8fc26dffe0"))
+#608895309e12f61b99d44169
+
         
 
 

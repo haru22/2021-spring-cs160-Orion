@@ -12,14 +12,37 @@ channel = grpc.insecure_channel("localhost:50051")
 # create client stub
 stub = pb2_grpc.GuruMatchStub(channel)
 
+"""
 # create a request
-newUser = pb2.CreateUserRequest(
-    id="1233e334",
-    name="Tenzin Gyatso",
+newUser = pb2.UserFormData(
+    id = "608895309e12f61b99d44169",
+    username = "10zin",
+    userBio = "I am Tenzin Wangpo",
+    userDescription = "I love computer science",
+    userSkill = "Python, Golang",
+    userIndustry = "SJSU",
+    userTag = "Testing, RestAPI",
 )
+"""
+#create request
+requests = pb2.IDonlymessage(id = "608912b1f3b218230b6f0c1")
+"""
+users = pb2.UserFormRequest(
+    id = "608895309e12f61b99d44169",
+    username = "10zin",
+    userBio = "I am Tenzin Wangpo",
+    userDescription = "I love computer science",
+    userSkill = "Python, Golang",
+    userIndustry = "SJSU",
+    userTag = "Testing, RestAPI",
+)
+"""
+print("asdfasdf")
 
 # make request
-response = stub.CreateUser(newUser)
+#response = stub.CreateUser(newUser)
+print(stub.IsUsernameExist(requests))
 
-print("The respnse is " + str(response))
+
+#print("The response is " + str(response))
 
