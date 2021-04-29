@@ -22,3 +22,9 @@ python server.py  # or python3 server.py
 ```
 #### then open the web browser
 localhost:3000/register 
+
+#### UI Test
+# using selenium and pytest
+cd 2021-spring-cs160-Orion/web_server/UITest/
+source myenv/bin/activate
+pytest test.py
