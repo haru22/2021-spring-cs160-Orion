@@ -162,363 +162,77 @@ separator:after {
 .extraSpace{
     margin-bottom:23px;
 }
-
-#user-form {
-    margin-top: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+.leftMenu{
+    color:#fff;
 }
-
-#userFrom-SubmitButton {
-    width: 20%;
-    margin-left: 40%;
-    margin-right: 40%;
+.homeMiniText{
+    color: #fff;
+    width: 32% !important;
+    float: left;
+    text-align: left;
+    font-size: 7px;
+    line-height: 18px;
 }
-  
-// Welcome Page begin
-#btn-override {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: #505c74;
-    border: none;
-    margin-top: 13%;
-    width: 70%;
-    height: 4rem;
-    border-radius: 1rem;
+.leftMenuItem{
+    padding-left: 2rem;
+    font-size: 16px;
+    line-height: 54px;
+    color: #ffffff;
+    font-family: "Roboto";
 }
-
-#welcome-page {
-	position: relative;
-	width: 1440px;
-	height: 1024px;
-
-	background: #4F5D75;
+.leftMenuItem:hover{
+    cursor:pointer;
+    background: #fff;
+    color: #ef8354;
+    border-radius: 50px 0px 50px 0px;
 }
-
-#logo {
-	position: absolute;
-	width: 223.76px;
-	height: 70px;
-	left: 26px;
-	top: 123px;
-
-	background: url(images/logo.png);
+.homeTitle-h1 {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    font-weight: 700;
+    font-family: 'Roboto', serif;
+    font-size: 2rem;
+    color: #4f5d75;
 }
-
-#home-btn {
-	position: absolute;
-	width: 123px;
-	height: 29.34px;
-	left: 48px;
-	top: 283px;
+.homeUser-h2 {
+    padding-bottom: 1rem;
+    font-family: 'Roboto', serif;
+    font-size: 1.5rem;
+    color: #000;
 }
-
-#home-txt {
-	position: absolute;
-	width: 65px;
-	height: 28px;
-	left: 106px;
-	top: 284px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #FFFFFF;
+.homePhrase{
+    color: #2d3142;
+    font-weight: 400;
+    font-family: "Roboto";
+    text-align: center;
 }
-
-#profile-btn {
-	position: absolute;
-	width: 124px;
-	height: 34px;
-	left: 48px;
-	top: 372px;
+.contentCont{
+    position:relative;margin: 0;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);
 }
-
-#profile-txt {
-	position: absolute;
-	width: 71px;
-	height: 28px;
-	left: 101px;
-	top: 375px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #FFFFFF;
+.cardAd{
+    width: 405px;
+    height: 162px;
+    border-radius: 4px;
+    filter: drop-shadow(0px 2px 7px rgba(102,102,102,0.2));
+    background-color: #f8f8f8;
 }
-
-#notif-btn {
-	position: absolute;
-	width: 181px;
-	height: 34px;
-	left: 48px;
-	top: 466px;
+.cardCreation{
+    font-size: 18px;
+    color: #2d3142;
+    font-weight: 500;
+    font-family: "Roboto";
 }
-
-#notif-txt {
-	position: absolute;
-	width: 126px;
-	height: 28px;
-	left: 103px;
-	top: 469px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #FFFFFF;
+.typeOfCardCreate{
+    font-size: 18px;
+    color: #4f5d75;
+    font-family: "Roboto";
 }
-
-#msg-btn {
-	position: absolute;
-	width: 157px;
-	height: 34px;
-	left: 48px;
-	top: 560px;
+.specCard{
+    border-radius: 4px;
+    filter: drop-shadow(0px 2px 7px rgba(102,102,102,0.2));
+    background-color: #f8f8f8;
+    border: none !important;
 }
-
-#msg-txt {
-	position: absolute;
-	width: 99px;
-	height: 28px;
-	left: 106px;
-	top: 563px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #FFFFFF;
-}
-
-#line {
-	position: absolute;
-	width: 196px;
-	height: 0px;
-	left: 40px;
-	top: 813px;
-
-	border: 1px solid #BFC0C0;
-}
-
-#uname-and-pp {
-	position: absolute;
-	width: 168px;
-	height: 34px;
-	left: 48px;
-	top: 837px;
-}
-
-#uname-txt1 {
-	position: absolute;
-	width: 110px;
-	height: 28px;
-	left: 106px;
-	top: 840px;
-
-	font-family: Roboto;
-	font-style: bold;
-	font-weight: 500;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #FFFFFF;
-}
-
-#logout {
-	position: absolute;
-	width: 143px;
-	height: 34px;
-	left: 48px;
-	top: 895px;
-}
-
-#rectangle1 {
-	position: absolute;
-	width: 1134px;
-	height: 964px;
-	left: 276px;
-	top: 30px;
-
-	background: #FFFFFF;
-	border-radius: 50px;
-}
-
-#welcome-msg1 {
-	position: absolute;
-	width: 507px;
-	height: 56px;
-	left: 589px;
-	top: 193px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 48px;
-	line-height: 56px;
-
-	color: #4F5D75;
-}
-
-#uname-txt2 {
-	position: absolute;
-	width: 165px;
-	height: 42px;
-	left: 760px;
-	top: 269px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 36px;
-	line-height: 42px;
-
-	color: #2D3142;
-}
-
-#welcome-msg2 {
-	position: absolute;
-	width: 1047px;
-	height: 56px;
-	left: 319px;
-	top: 781px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 24px;
-	line-height: 28px;
-	text-align: center;
-
-	color: #2D3142;
-}
-// Welcome Page end
-
-// Profile Page begin
-#prof-rectangle1 {
-	position: absolute;
-	width: 322px;
-	height: 651px;
-	left: 162px;
-	top: 62px;
-
-	background: #F8F8F8;
-	box-shadow: 2px 0px 6px rgba(102, 102, 102, 0.2);
-	border-radius: 50px;
-}
-
-#prof-profile {
-	position: absolute;
-	width: 96px;
-	height: 38px;
-	left: 294px;
-	top: 94px;
-	
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #2D3142;
-}
-
-#prof-pic {
-	position: absolute;
-width: 250px;
-height: 250px;
-left: 298px;
-top: 156px;
-
-background: url(.jpg);
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-border-radius: 50px;
-}
-
-#prof-name {
-	position: absolute;
-	width: 294px;
-	height: 28px;
-	left: 286px;
-	top: 430px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #2D3142;
-}
-
-#prof-rec-matches {
-	position: absolute;
-	width: 241px;
-	height: 28px;
-	left: 640px;
-	top: 727px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #2D3142;
-}
-
-#prof-about {
-	position: absolute;
-	width: 110px;
-	height: 28px;
-	left: 616px;
-	top: 113px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #2D3142;
-}
-
-#prof-about-text {
-	position: absolute;
-	width: 520px;
-	height: 24px;
-	left: 616px;
-	top: 157px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 24px;
-}
-
-#prof-tag {
-	position: absolute;
-	width: 40px;
-	height: 28px;
-	left: 616px;
-	top: 557px;
-
-	font-family: Roboto;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 28px;
-
-	color: #2D3142;
+.specCard:hover{
+    border: 1px solid rgba(0,0,0,.125) !important;
 }
