@@ -51,8 +51,28 @@ module.exports = {
                 console.log("recieved from server (StoreUserForm) " + JSON.stringify(response));
             })
             return res
+    },
+
+    getUserProfile: async (id) => {
+        const grpcRequest = {
+            "id": id
+        };
+        let res = ""
+        res =  await client.GetUserProfile(grpcRequest);
+        return JSON.stringify(res)
     }
 }
+
+/*
+async function getProfile() {
+    const grpcRequest = {
+        "id": "608888188def3a0ceded6f12"
+    };
+    res = await client.GetUserProfile(grpcRequest);
+    console.log(res)
+}
+
+getProfile();*/
 
 
 

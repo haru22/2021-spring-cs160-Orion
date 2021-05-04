@@ -18,31 +18,40 @@ class GuruMatchDatabase(object):
         return True
 
     @staticmethod
-    def isUsernameExist(userID):
+    def isUsernameExist(userId):
         # true = 1, false = 2  [because of protobuf consider 0 as default]
-        if len(GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userID}, {"username": 1, "_id": 0})) == 0:
+        print(GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId}, {"profile.username": 1,"_id": 0}))
+        userNameExist = GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId}, {"profile.username": 1, "_id": 0})
+        if (userNameExist is None) or (len(userNameExist["profile"])) == 0:
             return 2
         return 1
 
     @staticmethod
-    def insertNewUser(userInfo):
+    def insertNewUser(userId, name):
         print("inserting new User data")
-        GuruMatchDatabase.DATABASE['user-db'].insert_one(userInfo)
+        GuruMatchDatabase.DATABASE['user-db'].insert_one({"_id": userId, "profile":{"name": name}})
 
     @staticmethod
-    def insertUserForm(userFormData):
+    def insertUserForm(userId, userFormData):
         print("inserting User Form data")
         # we dont need to check the userId, because we authenticate the use before using this 
         # function and userID is send by login where login extract the userId from database, so userID will always be valid
         GuruMatchDatabase.DATABASE["user-db"].update_one(
-            {"_id":userFormData["_id"]}, 
+            {"_id":userId}, 
             {
                 "$set":userFormData
             })
+    
+    @staticmethod
+    def getUserProfile(userId):
+        print("Getting user Profile")
+        return (GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId},{"profile":1, "_id":0})["profile"])
         
-
-GuruMatchDatabase.initialize()
-print(GuruMatchDatabase.isUsernameExist("60891c85759b8d8fc26dffe0"))
+#GuruMatchDatabase.initialize()
+#print(GuruMatchDatabase.isUsernameExist("633d25d5"))
+#GuruMatchDatabase.insertNewUser({"_id": "1345234ee", "name": "David Beckham"})
+#GuruMatchDatabase.insertUserForm("1345234ee", {"profile.username": "Kicker", "profile.userBio": "I am soccer player"})
+#print(GuruMatchDatabase.getUserProfile("608888188def3a0ceded6f12"))
 #608895309e12f61b99d44169
 
         

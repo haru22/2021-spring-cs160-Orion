@@ -24,8 +24,9 @@ newUser = pb2.UserFormData(
     userTag = "Testing, RestAPI",
 )
 """
+
 #create request
-requests = pb2.IDonlymessage(id = "608912b1f3b218230b6f0c1")
+requests = pb2.IDonlymessage(id = "608888188def3a0ceded6f12")
 """
 users = pb2.UserFormRequest(
     id = "608895309e12f61b99d44169",
@@ -36,13 +37,17 @@ users = pb2.UserFormRequest(
     userIndustry = "SJSU",
     userTag = "Testing, RestAPI",
 )
-"""
-print("asdfasdf")
 
+print("asdfasdf")
+"""
 # make request
 #response = stub.CreateUser(newUser)
-print(stub.IsUsernameExist(requests))
-
+#print(stub.IsUsernameExist(requests))
+print(stub.GetUserProfile(requests))
 
 #print("The response is " + str(response))
+
+
+
+
 

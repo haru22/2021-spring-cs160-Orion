@@ -1,4 +1,4 @@
-// python -m grpc_tools.protoc -I./proto --python_out=./server --grpc_python_out=./server ./proto/guruMatch.proto  == From application-server folder
+// python -m grpc_tools.protoc -I./proto --python_out=./server --grpc_python_out=./server ./proto/guruMatch.proto // From application-server folder
 syntax = "proto3";
 
 package guruMatchPackage;
@@ -26,8 +26,18 @@ message UserFormData {
     string userTag = 7;
 }
 
+message UserProfile {
+    string username = 1;
+    string userBio = 2;
+    string userDescription = 3;
+    string userSkill = 4;
+    string userIndustry = 5;
+    string userTag = 6;
+}
+
 service GuruMatch {
     rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
     rpc IsUsernameExist (IDonlymessage) returns (SuccessResponse) {};
-    rpc StoreUserForm (UserFormData) returns (SuccessResponse) {}
+    rpc StoreUserForm (UserFormData) returns (SuccessResponse) {};
+    rpc GetUserProfile (IDonlymessage) returns (UserProfile) {};
 }
