@@ -101,10 +101,10 @@ app.post("/login", function (req, res, next) {
     req.logIn(user, async function(err) {
       if (err) { return next(err); }
       // here we will check if the user already fill up the form, 
-      //if not, then redirect to userForm page, else, redirect to home page
+      // if not, then redirect to userForm page, else, redirect to welcome page
       // if usernameExist is 2, then false, if 1 then true
-      let redirectURI = "/home";
       const userID = user._id.toString();
+      let redirectURI = "/welcome/" + userID;
       const usernameExist = await grpcClient.isUsernameExist(userID).catch((err) => console.log("ERROR: ", err))
       console.log("asdfasdf " + usernameExist)
       if (usernameExist == 2) {
@@ -205,11 +205,27 @@ app.post("/userForm/:id", function(req, res) {
   console.log("request: " + req.params.id)
   const userid = req.params.id
   grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag);
+  res.redirect("/welcome/" + userid)
+});
+
+// get request for welcome route
+app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userId)
+  const json_userProfile = JSON.parse(userProfile)
+  const username = json_userProfile.username
+  console.log("username: " + username)
+  res.render("welcome", {username: username});
 });
 
 // get request for home route
 app.get("/home", AuthenticationSuccess, function (req, res) {
-  res.render("home");
+  res.render("home")
+});
+
+// get request for profile route
+app.get("/profile", AuthenticationSuccess, function (req, res) {
+  res.render("profile")
 });
 
 // Logout handler
@@ -233,7 +249,7 @@ app.get("/auth/google/home",
     // here we will check if the user already fill up the form, 
     //if not, then redirect to userForm page, else, redirect to home page
     // if usernameExist is 2, then false, if 1 then true
-    let redirectURI = "/home";
+    let redirectURI = "/welcome";
     const usernameExist = await grpcClient.isUsernameExist(userID)
     console.log("asdfasdf " + usernameExist)
     if (usernameExist == 2) {
@@ -249,9 +265,8 @@ app.get("/auth/facebook",
 app.get("/auth/facebook/home",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/home');
+    // Successful authentication, redirect welcome.
+    res.redirect('/welcome');
   });
-
 
 

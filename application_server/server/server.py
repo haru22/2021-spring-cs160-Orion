@@ -2,6 +2,8 @@ import grpc
 from concurrent import futures
 import sys
 
+from grpc_reflection.v1alpha import reflection
+
 # help to convert protobuf to python dictionary
 from google.protobuf.json_format import MessageToDict
 
@@ -45,7 +47,7 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
     """
     
     def CreateUser(self, request, context):
-        GuruMatchDatabase.insertNewUser({"_id": request.id, "name": request.name})
+        GuruMatchDatabase.insertNewUser(request.id, request.name)
         response = pb2.SuccessResponse(success = True)
         return response
     
@@ -59,17 +61,29 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
     
     def StoreUserForm(self, request, context):
         print("FORMFORMRFOMR")
-        GuruMatchDatabase.insertUserForm(
+        GuruMatchDatabase.insertUserForm(request.id,
             {
-                "_id": request.id,
-                "username": request.username,
-                "userBio": request.userBio,
-                "userDescription": request.userDescription,
-                "userSkill": request.userSkill,
-                "userIndustry": request.userIndustry,
-                "userTag": request.userTag,
+                "profile.username": request.username,
+                "profile.userBio": request.userBio,
+                "profile.userDescription": request.userDescription,
+                "profile.userSkill": request.userSkill,
+                "profile.userIndustry": request.userIndustry,
+                "profile.userTag": request.userTag,
             })
         response = pb2.SuccessResponse(success = True)
+        return response
+    
+    def GetUserProfile(self, request, context):
+        userProfile = GuruMatchDatabase.getUserProfile(request.id)
+        print(userProfile)
+        response = pb2.UserProfile(
+            username = userProfile["username"],
+            userBio = userProfile["userBio"],
+            userDescription = userProfile["userDescription"],
+            userSkill = userProfile["userSkill"],
+            userIndustry = userProfile["userIndustry"],
+            userTag = userProfile["userTag"]
+        )
         return response
 
     
@@ -80,6 +94,11 @@ def run_server():
     # start the application server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_GuruMatchServicer_to_server(GuruMatchServicer(), server)
+    SERVICE_NAMES = (
+        pb2.DESCRIPTOR.services_by_name['GuruMatch'].full_name,
+        reflection.SERVICE_NAME,
+    )
+    reflection.enable_server_reflection(SERVICE_NAMES, server)
     server.add_insecure_port("localhost:50051")
     server.start()
     server.wait_for_termination()
