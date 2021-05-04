@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x05\"\x1b\n\rIDonlymessage\x12\n\n\x02id\x18\x01 \x01(\t\"\x90\x01\n\x0cUserFormData\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x0f\n\x07userBio\x18\x03 \x01(\t\x12\x17\n\x0fuserDescription\x18\x04 \x01(\t\x12\x11\n\tuserSkill\x18\x05 \x01(\t\x12\x14\n\x0cuserIndustry\x18\x06 \x01(\t\x12\x0f\n\x07userTag\x18\x07 \x01(\t\"\x83\x01\n\x0bUserProfile\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0f\n\x07userBio\x18\x02 \x01(\t\x12\x17\n\x0fuserDescription\x18\x03 \x01(\t\x12\x11\n\tuserSkill\x18\x04 \x01(\t\x12\x14\n\x0cuserIndustry\x18\x05 \x01(\t\x12\x0f\n\x07userTag\x18\x06 \x01(\t2\xe6\x02\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12W\n\x0fIsUsernameExist\x12\x1f.guruMatchPackage.IDonlymessage\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12T\n\rStoreUserForm\x12\x1e.guruMatchPackage.UserFormData\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12R\n\x0eGetUserProfile\x12\x1f.guruMatchPackage.IDonlymessage\x1a\x1d.guruMatchPackage.UserProfile\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0fguruMatch.proto\x12\x10guruMatchPackage\"-\n\x11\x43reateUserRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\"\"\n\x0fSuccessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x05\"\x1b\n\rIDonlymessage\x12\n\n\x02id\x18\x01 \x01(\t\"\x90\x01\n\x0cUserFormData\x12\n\n\x02id\x18\x01 \x01(\t\x12\x10\n\x08username\x18\x02 \x01(\t\x12\x0f\n\x07userBio\x18\x03 \x01(\t\x12\x17\n\x0fuserDescription\x18\x04 \x01(\t\x12\x11\n\tuserSkill\x18\x05 \x01(\t\x12\x14\n\x0cuserIndustry\x18\x06 \x01(\t\x12\x0f\n\x07userTag\x18\x07 \x01(\t\"\x91\x01\n\x0bUserProfile\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0f\n\x07userBio\x18\x02 \x01(\t\x12\x17\n\x0fuserDescription\x18\x03 \x01(\t\x12\x11\n\tuserSkill\x18\x04 \x01(\t\x12\x14\n\x0cuserIndustry\x18\x05 \x01(\t\x12\x0f\n\x07userTag\x18\x06 \x01(\t\x12\x0c\n\x04name\x18\x07 \x01(\t2\xe6\x02\n\tGuruMatch\x12V\n\nCreateUser\x12#.guruMatchPackage.CreateUserRequest\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12W\n\x0fIsUsernameExist\x12\x1f.guruMatchPackage.IDonlymessage\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12T\n\rStoreUserForm\x12\x1e.guruMatchPackage.UserFormData\x1a!.guruMatchPackage.SuccessResponse\"\x00\x12R\n\x0eGetUserProfile\x12\x1f.guruMatchPackage.IDonlymessage\x1a\x1d.guruMatchPackage.UserProfile\"\x00\x62\x06proto3'
 )
 
 
@@ -252,6 +252,13 @@ _USERPROFILE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='guruMatchPackage.UserProfile.name', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -265,7 +272,7 @@ _USERPROFILE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=297,
-  serialized_end=428,
+  serialized_end=442,
 )
 
 DESCRIPTOR.message_types_by_name['CreateUserRequest'] = _CREATEUSERREQUEST
@@ -319,8 +326,8 @@ _GURUMATCH = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=431,
-  serialized_end=789,
+  serialized_start=445,
+  serialized_end=803,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateUser',
