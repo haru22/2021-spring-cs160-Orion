@@ -45,14 +45,6 @@
       </div>
       <div class="col-md-10 mx-auto h-100" style="padding-top: 2rem;">
         <div class="card col-md-10 mx-auto h-100 w-100" style="" id="login-card">
-          <div id="home" style="margin-bottom:1rem; display:none;">
-            <h1 class="homeTitle-h1">Welcome to GuruMatch</h1>
-            <h2 class="homeUser-h2">Username</h2>
-            <div>
-              <img src="../img/undraw_celebration_0jvk 1.png" />
-            </div>
-            <p class="homePhrase">You may think you know a lot, here you understand that you have a lot to learn</p>
-          </div>
           <div id="main_home" style="margin-bottom:1rem; display: block;">
             <div>
               <img src="../img/ondulatedDiv.png" style="border-radius:32px 32px 0px 0px; width:100%;"/>
@@ -85,11 +77,13 @@
             </div>
             <div style="margin-bottom:1.2rem;">
               <div class="col-md-2" style="float:left;">
+                <a href="#" id="createMenteeButton">
                 <div class="card col-md-12 mx-auto cardAd" style="height:145px; width:175px;" id="card">
                   <img src="../img/add.png" style="width:44px;margin-left: auto;margin-right: auto;margin-top: auto;"/>
                   <h5 class="cardCreation">Create new card</h5>
                   <p class="typeOfCardCreate">Mentee</p>
                 </div>
+              </a>
               </div>
               <div class="col-md-10" style="overflow-x:hidden;">
                 <div style="overflow: hidden; width: max-content; height:151px;">
@@ -122,11 +116,13 @@
             </div>
             <div style="margin-bottom:1.2rem;">
               <div class="col-md-2" style="float:left;">
+                <a href="#" id="createMentorButton">
                 <div class="card col-md-12 mx-auto cardAd" style="height:145px; width:175px;" id="card">
                   <img src="../img/add.png" style="width:44px;margin-left: auto;margin-right: auto;margin-top: auto;"/>
                   <h5 class="cardCreation">Create new card</h5>
                   <p class="typeOfCardCreate">Mentor</p>
                 </div>
+              </a>
               </div>
               <div class="col-md-10" style="overflow-x:hidden">
                 <div style="overflow: hidden; width:max-content; height:151px;">
@@ -159,5 +155,50 @@
       </div>
     </div>
   </div>
+  <div class="modal-mentee">
+    <div class="menteeModal-content">
+      <div class="close-mentee">+</div>
+      <img src="" alt="">
+      <form action="/createMentee/<%=id%>" method="POST">
+        <label> Hi <%= userProfile.name%> </label> <br>
+        <label > What subject you want us to find the mentor? </label>
+        <textarea id="interestInput-modal" placeholder="Type your interest with comma separated" name="interest" rows="1"></textarea>
+        <label> Short description about yourself and your chosen topic </label>
+        <textarea id="descriptionInput-modal" placeholder="Type some description about yourself and what kind of topic you want to study with match mentor" name="menteeDescription" rows="7"></textarea>
+        <input class="btn btn-primary" type="submit" value="submit">
+      </form>
+    </div>
+  </div>
+  <div class="modal-mentor">
+    <div class="mentorModal-content">
+      <div class="close-mentor">+</div>
+      <img src="" alt="">
+      <form action="/createMentor/<%=id%>" method="POST">
+        <label> Hi <%= userProfile.name%> </label> <br>
+        <label> Thank you for choosing to be a mentor, your kindness and compassion is appreciated</label>
+        <br><br>
+        <label > What subject you want to teach? </label>
+        <textarea id="interestInput-modal" placeholder="Type your interest with comma separated" name="interest" rows="1"></textarea>
+        <label> Short description about yourself and what mentee you looking for? </label>
+        <textarea id="descriptionInput-modal" placeholder="Type some description about yourself and what type of mentee you want to teach" name="mentorDescription" rows="7"></textarea>
+        <input class="btn btn-primary" type="submit" value="submit">
+      </form>
+    </div>
+  </div>
+  <script>
+    document.getElementById("createMenteeButton").addEventListener("click", function() {
+      document.querySelector(".modal-mentee").style.display = "flex";
+      console.log("Pressess Mentee");
+    });
+
+    document.querySelector(".close-mentee").addEventListener("click", () => document.querySelector(".modal-mentee").style.display = "none")
+
+    document.getElementById("createMentorButton").addEventListener("click", function() {
+      document.querySelector(".modal-mentor").style.display = "flex";
+      console.log("Pressesss Mentor ");
+    });
+
+    document.querySelector(".close-mentor").addEventListener("click", () => document.querySelector(".modal-mentor").style.display = "none")
+  </script>
   </body>
 </html>
