@@ -82,7 +82,8 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
             userDescription = userProfile["userDescription"],
             userSkill = userProfile["userSkill"],
             userIndustry = userProfile["userIndustry"],
-            userTag = userProfile["userTag"]
+            userTag = userProfile["userTag"],
+            name = userProfile["name"]
         )
         return response
 

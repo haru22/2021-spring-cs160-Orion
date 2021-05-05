@@ -215,17 +215,24 @@ app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
   const json_userProfile = JSON.parse(userProfile)
   const username = json_userProfile.username
   console.log("username: " + username)
-  res.render("welcome", {username: username});
+  res.render("welcome", {username: username, id: userId});
 });
 
 // get request for home route
-app.get("/home", AuthenticationSuccess, function (req, res) {
-  res.render("home")
+app.get("/home/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userId)
+  const json_userProfile = JSON.parse(userProfile)
+  res.render("home", {userProfile: json_userProfile, id: userId})
 });
 
 // get request for profile route
-app.get("/profile", AuthenticationSuccess, function (req, res) {
-  res.render("profile")
+app.get("/profile/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userId)
+  const json_userProfile = JSON.parse(userProfile)
+  console.log(json_userProfile)
+  res.render("profile", {userProfile: json_userProfile, id: userId})
 });
 
 // Logout handler

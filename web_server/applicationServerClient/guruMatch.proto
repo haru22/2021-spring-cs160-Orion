@@ -32,6 +32,7 @@ message UserProfile {
     string userSkill = 4;
     string userIndustry = 5;
     string userTag = 6;
+    string name = 7;
 }
 
 service GuruMatch {
