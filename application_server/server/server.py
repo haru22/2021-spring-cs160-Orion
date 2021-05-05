@@ -70,7 +70,7 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
                 "profile.userIndustry": request.userIndustry,
                 "profile.userTag": request.userTag,
             })
-        response = pb2.SuccessResponse(success = True)
+        response = pb2.SuccessResponse(success = 1)
         return response
     
     def GetUserProfile(self, request, context):
@@ -86,6 +86,32 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
             name = userProfile["name"]
         )
         return response
+    
+    def CreateMentee(self, request, context):
+        print("inside the create mentee")
+        print(request)
+        interestList = request.interest.split(",")
+        GuruMatchDatabase.createMenteeAndMentor(
+            request.id,
+            {
+               "mentee.interest" : interestList,
+               "mentee.mentee-description" : request.menteeDescription
+            } )
+        response = pb2.SuccessResponse(success = 1)
+        return response
+
+    def CreateMentor(self, request, context):
+        print(request)
+        interestList = request.interest.split(",")
+        GuruMatchDatabase.createMenteeAndMentor(
+            request.id,
+            {
+               "mentor.interest" : interestList,
+               "mentor.mentor-description" : request.mentorDescription
+            } )
+        response = pb2.SuccessResponse(success = 1)
+        return response
+        
 
     
 def run_server():

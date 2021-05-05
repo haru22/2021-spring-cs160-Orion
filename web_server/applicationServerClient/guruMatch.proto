@@ -35,9 +35,23 @@ message UserProfile {
     string name = 7;
 }
 
+message CreateMenteeRequest {
+    string id = 1;
+    string interest = 2;
+    string menteeDescription = 3;
+}
+
+message CreateMentorRequest {
+    string id = 1;
+    string interest = 2;
+    string mentorDescription = 3;
+}
+
 service GuruMatch {
     rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
     rpc IsUsernameExist (IDonlymessage) returns (SuccessResponse) {};
     rpc StoreUserForm (UserFormData) returns (SuccessResponse) {};
     rpc GetUserProfile (IDonlymessage) returns (UserProfile) {};
+    rpc CreateMentee (CreateMenteeRequest) returns (SuccessResponse) {};
+    rpc CreateMentor (CreateMentorRequest) returns (SuccessResponse) {}
 }

@@ -29,7 +29,7 @@ class GuruMatchDatabase(object):
     @staticmethod
     def insertNewUser(userId, name):
         print("inserting new User data")
-        GuruMatchDatabase.DATABASE['user-db'].insert_one({"_id": userId, "profile":{"name": name}})
+        GuruMatchDatabase.DATABASE['user-db'].insert_one({"_id": userId, "profile":{"name": name}, "mentee": {}, "mentor":{}})
 
     @staticmethod
     def insertUserForm(userId, userFormData):
@@ -46,6 +46,18 @@ class GuruMatchDatabase(object):
     def getUserProfile(userId):
         print("Getting user Profile")
         return (GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId},{"profile":1, "_id":0})["profile"])
+
+    # can use this for both creating mentor and mentee even though it say create
+    @staticmethod
+    def createMenteeAndMentor(userId, userInput):
+        print("inserting the the mentee or mentor input")
+        print(userInput)
+        GuruMatchDatabase.DATABASE["user-db"].update_one(
+            {"_id": userId},
+            {
+                "$set": userInput
+            }
+        )
         
 #GuruMatchDatabase.initialize()
 #print(GuruMatchDatabase.isUsernameExist("633d25d5"))

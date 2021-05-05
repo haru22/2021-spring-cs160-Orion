@@ -46,7 +46,7 @@ module.exports = {
                 "userIndustry": user_industry,
                 "userTag": user_tag
             }
-            let res = false;
+            let res = 2;
             client.StoreUserForm(grpcRequest, (err, response) => {
                 console.log("recieved from server (StoreUserForm) " + JSON.stringify(response));
             })
@@ -60,19 +60,45 @@ module.exports = {
         let res = ""
         res =  await client.GetUserProfile(grpcRequest);
         return JSON.stringify(res)
-    }
+    }, 
+
+    createMentee: async (id, interests, description) => {
+        const grpcRequest = {
+            "id" : id,
+            "interest" : interests,
+            "menteeDescription" : description
+        };
+        let res = 2
+        res = await client.CreateMentee(grpcRequest);
+        console.log(res)
+    },
+
+    createMentor: async (id, interests, description) => {
+        const grpcRequest = {
+            "id" : id,
+            "interest" : interests,
+            "mentorDescription" : description
+        };
+        let res = 2
+        res = await client.CreateMentor(grpcRequest);
+        console.log(res)
+    },
+
+
 }
 
-/*
-async function getProfile() {
+/** 
+async function createMentee() {
     const grpcRequest = {
-        "id": "608888188def3a0ceded6f12"
+        "id" : "60920a94f652b4c0b9479c02",
+        "interest" : "python, Java, Golang",
+        "menteeDescription" : "I love to learn about the python, JAva, and Golang"
     };
-    res = await client.GetUserProfile(grpcRequest);
+    res = await client.CreateMentee(grpcRequest);
     console.log(res)
 }
 
-getProfile();*/
+createMentee();*/
 
 
 

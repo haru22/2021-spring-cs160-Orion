@@ -235,6 +235,25 @@ app.get("/profile/:id", AuthenticationSuccess, async function (req, res) {
   res.render("profile", {userProfile: json_userProfile, id: userId})
 });
 
+// post request for creating mentee route 
+app.post("/createMentee/:id", AuthenticationSuccess, async function (req, res) {
+  const {interest, menteeDescription} = req.body;
+  const userId = req.params.id
+  console.log(interest + " " + menteeDescription)
+  grpcClient.createMentee(userId, interest, menteeDescription)
+  console.log("I am creating mentee")
+  res.redirect("/home/"+userId)
+})
+
+// post request for creating mentor route 
+app.post("/createMentor/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const {interest, mentorDescription} = req.body;
+  grpcClient.createMentor(userId, interest, mentorDescription)
+  console.log("i am creating a mentor")
+  res.redirect("/home/"+userId)
+})
+
 // Logout handler
 app.get("/logout", function(req, res) {
   req.logOut();
