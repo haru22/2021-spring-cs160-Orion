@@ -24,6 +24,7 @@ message UserFormData {
     string userSkill = 5;
     string userIndustry = 6;
     string userTag = 7;
+    string profilePic = 8;
 }
 
 message UserProfile {
@@ -34,6 +35,7 @@ message UserProfile {
     string userIndustry = 5;
     string userTag = 6;
     string name = 7;
+    string profilePic = 8;
 }
 
 message CreateMenteeRequest {

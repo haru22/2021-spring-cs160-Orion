@@ -36,7 +36,7 @@ module.exports = {
     },
 
     storeUserForm: (id, username, user_bio, user_description, 
-        user_skill, user_industry, user_tag) => {
+        user_skill, user_industry, user_tag, profile_pic) => {
             const grpcRequest = {
                 "id": id,
                 "username": username,
@@ -44,7 +44,8 @@ module.exports = {
                 "userDescription": user_description,
                 "userSkill": user_skill,
                 "userIndustry": user_industry,
-                "userTag": user_tag
+                "userTag": user_tag,
+                "profilePic": profile_pic,
             }
             let res = 2;
             client.StoreUserForm(grpcRequest, (err, response) => {

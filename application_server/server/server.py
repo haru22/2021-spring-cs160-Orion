@@ -69,6 +69,7 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
                 "profile.userSkill": request.userSkill,
                 "profile.userIndustry": request.userIndustry,
                 "profile.userTag": request.userTag,
+                "profile.profilePic": request.profilePic,
             })
         response = pb2.SuccessResponse(success = 1)
         return response
@@ -83,7 +84,8 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
             userSkill = userProfile["userSkill"],
             userIndustry = userProfile["userIndustry"],
             userTag = userProfile["userTag"],
-            name = userProfile["name"]
+            name = userProfile["name"],
+            profilePic = userProfile["profilePic"],
         )
         return response
     

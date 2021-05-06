@@ -22,6 +22,23 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // facebook auth
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+// for upload image
+const multer = require('multer')
+
+
+// define storage for the image
+const Storage = multer.diskStorage({
+  destination: "./frontend/uploads",
+  filename:(req,file,callback) => {
+    callback(null, file.fieldname+"_"+Date.now()+path.extname(file.originalname));
+  }
+});
+
+// upload params for multer
+const upload = multer({
+  storage: Storage
+}).single('file');
+
 
 const app = express();
 const path = require("path");
@@ -194,17 +211,22 @@ app.post("/register", function (req, res) {
   }
 });
 
+
+
 // get request for user-form 
 app.get("/userForm/:id", AuthenticationSuccess, function(req, res) {
   res.render("userdataForm", {id: req.params.id})
 });
 
-app.post("/userForm/:id", function(req, res) {
+app.post("/userForm/:id", upload, function(req, res) {
   const {username, userBio, userDescription, userSkills, userIndustry, userTag} = req.body;
-  console.log(username + " " + userBio+ " " +userDescription+ " " +userSkills+ " " +userIndustry+ " " +userTag)
+  const file = req.file.filename;
+  console.log(username + " " + userBio+ " " +userDescription+ " " +userSkills+ " " +userIndustry+ " " +userTag + " " + file)
   console.log("request: " + req.params.id)
   const userid = req.params.id
-  grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag);
+  grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag, file);
+  
+
   res.redirect("/welcome/" + userid)
 });
 
