@@ -16,36 +16,6 @@ from mongoDatabase.database import GuruMatchDatabase
 
 class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
     # adding service to the server
-
-    """
-    def CreateMentee(self, request, context):
-        # CreateMentee service will create the new mentee and persist the new mentee data in mongoDatabase
-        print("asdfasdf")
-        print(request)
-        # here we are converting the protobuf response to the python dictionary because pymongo
-        # only take dictionary data structure
-        menteeDict = list(MessageToDict(request).values())[0]
-        # then insert into the mongodb
-        GuruMatchDatabase.insertNewMentee(menteeDict)
-        # send the response back to client
-        response = pb2.CreateMenteeResponse(persisted=True)
-        return response
-
-    def GetUserName(self, request, context):
-        # CreateMentee service will create the new mentee and persist the new mentee data in mongoDatabase
-        print("get user name")
-        print(request)
-        # here we are converting the protobuf response to the python dictionary because pymongo
-        # only take dictionary data structure
-        menteeDict = list(MessageToDict(request).values())[0]
-        # then insert into the mongodb
-        user = GuruMatchDatabase.GetUserName()
-        print(user)
-        # send the response back to client
-        response = pb2.GetUserNameResponse({"userName": user.username})
-        return response
-    """
-    
     def CreateUser(self, request, context):
         GuruMatchDatabase.insertNewUser(request.id, request.name)
         response = pb2.SuccessResponse(success = True)

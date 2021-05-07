@@ -541,6 +541,34 @@ border-radius: 50px;
     color: #ef8354;
     border-radius: 50px 0px 50px 0px;
 }
+
+.profileLine {
+	margin-top: 120%;
+	margin-left: 6%;
+	color: white;
+}
+
+.usernameProfile {
+	padding-left: 2rem;
+	font-size: 16px;
+    line-height: 40px;
+    color: #ffffff;
+    font-family: "Roboto";
+}
+
+.usernameItem{
+    padding-left: 2rem;
+    font-size: 16px;
+    line-height: 54px;
+    color: #ffffff;
+    font-family: "Roboto";
+}
+.usernameItem:hover{
+    cursor:pointer;
+    background: #fff;
+    color: #ef8354;
+    border-radius: 50px 0px 50px 0px;
+}
 .homeTitle-h1 {
     padding-top: 1rem;
     padding-bottom: 2rem;
@@ -591,10 +619,6 @@ border-radius: 50px;
 .specCard:hover{
     border: 1px solid rgba(0,0,0,.125) !important;
 }
-
-* {
-	overflow:hidden; /* or auto */
-	}
 
 .modal-mentee {
 	width: 100%;
@@ -672,6 +696,36 @@ border-radius: 50px;
 	font-size: 42px;
 	transform: rotate(45deg);
 	cursor: pointer;
+}
+
+.image-profile {
+	padding-top: 3%;
+	padding-bottom: 5%;
+	padding-left: 3%;
+	padding-right: 3%;
+	height: 50%;
+}
+
+.card {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 4px 5px 0 rgba(0,0,0,0.4);
+	transition: 0.3s;
+	padding-top: 1%;
+  }
+
+  /* Add some padding inside the card container */
+.container {
+	padding: 2px 16px;
+  }
+
+.description-profile-ques {
+	font-size: large;
+	font-weight: bolder;
+}
+
+.description-profile {
+	padding-top: 1%;
+	padding-right: 5%;
 }
 
 html { overflow-y: scroll; overflow-x:hidden; }

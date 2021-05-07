@@ -58,13 +58,62 @@ class GuruMatchDatabase(object):
                 "$set": userInput
             }
         )
-        
+    
+    @staticmethod
+    def getMatchMentor(userId):
+        menteeProfile = GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId})
+        # Check if the user have set up the interest or not
+        userMenteeSetUp = True
+        if (len(menteeProfile["mentee"]) == 0 or menteeProfile["mentee"]["interest"] == None):
+            userMenteeSetUp = False
+        # find() will return the cursor to first document from our collection in database
+        alluser = GuruMatchDatabase.DATABASE["user-db"].find()
+        currentNumberOfUser = 0
+        totalUserReturn = 10
+        listOfReturnUser = list()
+        # we will only return 10 users
+        if (not userMenteeSetUp):
+            try:
+                while( currentNumberOfUser < totalUserReturn):
+                    currentCursor = alluser.next()
+                    if (len(currentCursor["mentee"]) == 0 or currentCursor["mentee"]["interest"] == None):
+                        continue
+                    listOfReturnUser.append(currentCursor)
+                    currentNumberOfUser += 1
+            except StopIteration:
+                print("STop Iteration")
+        else:
+            menteeInterest = menteeProfile["mentee"]["interest"]
+            try:
+                while(currentNumberOfUser < totalUserReturn):
+                    currentUserCursor = alluser.next()
+                    if (any(item in currentUserCursor["mentor"]["interest"] for item in menteeInterest)):
+                        listOfReturnUser.append(currentUserCursor)
+            except StopIteration:
+                if (len(listOfReturnUser) < totalUserReturn):
+                    try:
+                        while( currentNumberOfUser < totalUserReturn):
+                            listOfReturnUser.append(alluser.next())
+                            currentNumberOfUser += 1
+                    except StopIteration:
+                        print("STop Iteration")
+        return listOfReturnUser
+
+        """
+        try:
+            alluser = GuruMatchDatabase.DATABASE["user-db"].find()
+            while(alluser):
+                print(alluser.next())
+        except StopIteration:
+            print("STop Iteration")"""
+
 #GuruMatchDatabase.initialize()
 #print(GuruMatchDatabase.isUsernameExist("633d25d5"))
 #GuruMatchDatabase.insertNewUser({"_id": "1345234ee", "name": "David Beckham"})
 #GuruMatchDatabase.insertUserForm("1345234ee", {"profile.username": "Kicker", "profile.userBio": "I am soccer player"})
 #print(GuruMatchDatabase.getUserProfile("608888188def3a0ceded6f12"))
 #608895309e12f61b99d44169
+#GuruMatchDatabase.getMatchMentor("609371cf438a5923aa91b196")
 
         
 
