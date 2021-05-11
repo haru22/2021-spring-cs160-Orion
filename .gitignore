@@ -14,7 +14,7 @@ web_server/frontend/popupMessages/.messages.ejs.icloud
 */__pycache__/*
 .passport.js.icloud
 /myenv
-*/.vscode/*
+**/.vscode/.ropeproject/**
 
 # Logs
 logs
