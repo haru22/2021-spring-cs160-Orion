@@ -12,6 +12,7 @@ popupMessages/.messages.ejs.icloud
 web_server/frontend/popupMessages/.messages.ejs.icloud
 */__pycache__/*
 .passport.js.icloud
+/myenv
 
 # Logs
 logs
