@@ -86,34 +86,18 @@
               </div>
               <div class="col-md-10" style="overflow-x: scroll;">
                 <div style="overflow: scroll; width: max-content; height:151px;">
-                  <a href="">
-                  <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;Username</div>
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';">I am looking for a mentor to know about User Interface Design</div>
-                    <div class="row col-md-12">
-                      <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-info">UI Design</span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentee</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="">
-                  <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person2.png" />&nbsp;&nbsp;Username</div>
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';">I am looking for a bodybuilding coach</div>
-                    <div class="row col-md-12">
-                      <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-danger">Sport</span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentee</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="">
-                  <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person3.png" />&nbsp;&nbsp;Username</div>
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';">I like to...</div>
-                    <div class="row col-md-12">
-                      <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-info">Sing</span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentee/div>
-                    </div>
-                  </div>
-                </div>
-              </a>
+                  <% menteesMatch.forEach(element => { %> 
+                    <a href="">
+                      <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;<%= element.userProfile.username%></div>
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';"><%= element.mentee.menteeDescription%></div>
+                        <div class="row col-md-12">
+                          <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-info" style="margin-left: 5px ;"><%=element.mentee.interest.toString()%></span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentee</div>
+                        </div>
+                      </div>
+                    </a>
+                  <%});%>
+                
               </div>
             </div>
             <div style="text-align: left;margin-left: 10px;">
@@ -131,33 +115,17 @@
               </div>
               <div class="col-md-10" style="overflow-x: scroll">
                 <div style="overflow: scroll; width:max-content; height:151px;">
-                  <a href="">
-                  <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person4.png" />&nbsp;&nbsp;Username</div>
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';">I have the hability to teach Integral</div>
-                    <div class="row col-md-12">
-                      <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-primary">Math</span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentor</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="">
-                  <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person5.png" />&nbsp;&nbsp;Username</div>
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';">I am looking for a student to teach physics</div>
-                    <div class="row col-md-12">
-                      <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-secondary">Physic</span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentor</div>
-                    </div>
-                  </div>
-                </a>
-                <a href="">
-                  <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person6.png" />&nbsp;&nbsp;Username</div>
-                    <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';">I am looking for a student to teach physics</div>
-                    <div class="row col-md-12">
-                      <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-secondary">Sew</span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentor</div>
-                    </div>
-                  </div>
-                  </a>
+                  <% mentorsMatch.forEach(element => { %> 
+                    <a href="">
+                      <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;<%= element.userProfile.username%></div>
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';"><%= element.mentor.mentorDescription%></div>
+                        <div class="row col-md-12">
+                          <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-info" style="margin-left: 5px ;"><%=element.mentor.interest.toString()%></span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentor</div>
+                        </div>
+                      </div>
+                    </a>
+                  <%});%>
                 </div>
               </div>
             </div>

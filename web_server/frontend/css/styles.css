@@ -710,7 +710,7 @@ border-radius: 50px;
 	/* Add shadows to create the "card" effect */
 	box-shadow: 0 4px 5px 0 rgba(0,0,0,0.4);
 	transition: 0.3s;
-	padding-top: 1%;
+	padding-top: 0.2%;
   }
 
   /* Add some padding inside the card container */

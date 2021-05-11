@@ -60,9 +60,12 @@ class GuruMatchDatabase(object):
         )
     
     @staticmethod
-    def getMatchMentor(userId):
+    def getMatchMentors(userId):
+        """
+        it will return all the mentors that match the mentee interest
+        """
         menteeProfile = GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId})
-        # Check if the user have set up the interest or not
+        # Check if the user have set up the mentee interest or not
         userMenteeSetUp = True
         if (len(menteeProfile["mentee"]) == 0 or menteeProfile["mentee"]["interest"] == None):
             userMenteeSetUp = False
@@ -76,47 +79,104 @@ class GuruMatchDatabase(object):
             try:
                 while( currentNumberOfUser < totalUserReturn):
                     currentCursor = alluser.next()
-                    if (len(currentCursor["mentee"]) == 0 or currentCursor["mentee"]["interest"] == None):
+                    if (currentCursor["_id"] == userId or len(currentCursor["mentor"]) == 0 or currentCursor["mentor"]["interest"] is not None):
+                        continue
+                    listOfReturnUser.append(currentCursor)
+                    currentNumberOfUser += 1
+            except StopIteration:
+                pass
+        else:
+            menteeInterest = menteeProfile["mentee"]["interest"]
+            try:
+                while(currentNumberOfUser < totalUserReturn):
+                    currentUserCursor = alluser.next()
+                    if (currentUserCursor["_id"] != userId and len(currentUserCursor["mentor"]) > 0 and currentUserCursor["mentor"]["interest"] is not None):
+                        if (any(item in currentUserCursor["mentor"]["interest"] for item in menteeInterest)):
+                            listOfReturnUser.append(currentUserCursor)
+                    else:
+                        continue
+            except StopIteration:
+                if (len(listOfReturnUser) < totalUserReturn):
+                    try:
+                        alluser = GuruMatchDatabase.DATABASE["user-db"].find()
+                        while( currentNumberOfUser < totalUserReturn):
+                            # TODO make sure to add new user at end if there is less mentor matched
+                            # have to start from the beginning with find()
+                            currentUserCursor = alluser.next()
+                            if (currentUserCursor["_id"] != userId and len(currentUserCursor["mentor"]) > 0 and currentUserCursor["mentor"]["interest"] is not None):
+                                listOfReturnUser.append(currentUserCursor)
+                                currentNumberOfUser += 1
+                    except StopIteration:
+                        pass
+        return listOfReturnUser
+
+    @staticmethod
+    def getMatchMentees(userId):
+        """
+        we could have use the above method since both static method are same, but it highly 
+        reduce the readibility and simplicity so I have decided to write method which is 
+        similar to above method. 
+
+        It will return all the mentees which match with the mentor
+        """
+        mentorProfile = GuruMatchDatabase.DATABASE["user-db"].find_one({"_id": userId})
+        # Check if the user have set up the mentor interest or not and if not set up then
+        # return random 10 users
+        userMentorSetUp = True
+        if (len(mentorProfile["mentor"]) == 0 or mentorProfile["mentor"]["interest"] == None):
+            userMentorSetUp = False
+        # find() will return the cursor to first document from our collection in database
+        alluser = GuruMatchDatabase.DATABASE["user-db"].find()
+        currentNumberOfUser = 0
+        totalUserReturn = 10
+        listOfReturnUser = list()
+        # we will only return 10 users
+        if (not userMentorSetUp):
+            try:
+                while( currentNumberOfUser < totalUserReturn):
+                    currentCursor = alluser.next()
+                    if (currentCursor["_id"] == userId or len(currentCursor["mentee"]) == 0 or currentCursor["mentee"]["interest"] is not None):
                         continue
                     listOfReturnUser.append(currentCursor)
                     currentNumberOfUser += 1
             except StopIteration:
                 print("STop Iteration")
         else:
-            menteeInterest = menteeProfile["mentee"]["interest"]
+            mentorInterest = mentorProfile["mentor"]["interest"]
             try:
                 while(currentNumberOfUser < totalUserReturn):
                     currentUserCursor = alluser.next()
-                    if (any(item in currentUserCursor["mentor"]["interest"] for item in menteeInterest)):
-                        listOfReturnUser.append(currentUserCursor)
+                    if (currentUserCursor["_id"] != userId and len(currentUserCursor["mentee"]) > 0 and currentUserCursor["mentee"]["interest"] is not None):
+                        if (any(item in currentUserCursor["mentee"]["interest"] for item in mentorInterest)):
+                            listOfReturnUser.append(currentUserCursor)
+                    else:
+                        continue
             except StopIteration:
+                print("asdfasdf")
                 if (len(listOfReturnUser) < totalUserReturn):
                     try:
+                        alluser = GuruMatchDatabase.DATABASE["user-db"].find()
                         while( currentNumberOfUser < totalUserReturn):
-                            listOfReturnUser.append(alluser.next())
-                            currentNumberOfUser += 1
+                            # TODO make sure to add new user at end if there is less mentee matched
+                            # have to start from the beginning with find()
+                            currentUserCursor = alluser.next()
+                            if (currentUserCursor["_id"] != userId and len(currentUserCursor["mentee"]) > 0 and currentUserCursor["mentee"]["interest"] is not None):
+                                listOfReturnUser.append(currentUserCursor)
+                                currentNumberOfUser += 1
                     except StopIteration:
-                        print("STop Iteration")
+                        pass
         return listOfReturnUser
 
-        """
-        try:
-            alluser = GuruMatchDatabase.DATABASE["user-db"].find()
-            while(alluser):
-                print(alluser.next())
-        except StopIteration:
-            print("STop Iteration")"""
-
-#GuruMatchDatabase.initialize()
+GuruMatchDatabase.initialize()
 #print(GuruMatchDatabase.isUsernameExist("633d25d5"))
 #GuruMatchDatabase.insertNewUser({"_id": "1345234ee", "name": "David Beckham"})
 #GuruMatchDatabase.insertUserForm("1345234ee", {"profile.username": "Kicker", "profile.userBio": "I am soccer player"})
 #print(GuruMatchDatabase.getUserProfile("608888188def3a0ceded6f12"))
 #608895309e12f61b99d44169
-#GuruMatchDatabase.getMatchMentor("609371cf438a5923aa91b196")
+#")))
+print("final : ", GuruMatchDatabase.getMatchMentors("60944967595c0ef62c396663"))
 
         
-
 
 
 

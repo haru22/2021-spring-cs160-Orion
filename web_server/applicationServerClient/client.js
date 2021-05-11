@@ -71,7 +71,7 @@ module.exports = {
         };
         let res = 2
         res = await client.CreateMentee(grpcRequest);
-        console.log(res)
+        return res;
     },
 
     createMentor: async (id, interests, description) => {
@@ -82,24 +82,36 @@ module.exports = {
         };
         let res = 2
         res = await client.CreateMentor(grpcRequest);
-        console.log(res)
+        return res;
     },
 
+    getMatchMentors: async (id) => {
+        const grpcRequest = {
+            "id" : id
+        };
+        let res = await client.GetMatchMentors(grpcRequest);
+        return JSON.stringify(res);
+    },
 
+    getMatchMentees: async (id) => {
+        const grpcRequest = {
+            "id" : id
+        };
+        let res = await client.GetMatchMentees(grpcRequest);
+        //console.log(JSON.stringify(res))
+        return JSON.stringify(res);
+    }
 }
 
 /** 
-async function createMentee() {
+async function getMatchMentors() {
     const grpcRequest = {
-        "id" : "60920a94f652b4c0b9479c02",
-        "interest" : "python, Java, Golang",
-        "menteeDescription" : "I love to learn about the python, JAva, and Golang"
+        "id" : "6095ab14b3e334370b1cf9cb",
     };
-    res = await client.CreateMentee(grpcRequest);
-    console.log(res)
+    res = await client.GetMatchMentors(grpcRequest);
 }
 
-createMentee();*/
+getMatchMentors() ;*/
 
 
 

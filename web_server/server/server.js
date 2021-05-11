@@ -244,8 +244,18 @@ app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
 app.get("/home/:id", AuthenticationSuccess, async function (req, res) {
   const userId = req.params.id
   const userProfile = await grpcClient.getUserProfile(userId)
+  const userMatchMentors = await grpcClient.getMatchMentors(userId)
+  const userMatchMentees = await grpcClient.getMatchMentees(userId)
   const json_userProfile = JSON.parse(userProfile)
-  res.render("home", {userProfile: json_userProfile, id: userId})
+  const json_userMatchMentors = JSON.parse(userMatchMentors)
+  const json_userMatchMentees = JSON.parse(userMatchMentees)
+  console.log(json_userMatchMentors.allMatchMentors)
+  res.render("home", {
+    id: userId, 
+    userProfile: json_userProfile, 
+    mentorsMatch: json_userMatchMentors.allMatchMentors, 
+    menteesMatch: json_userMatchMentees.allMatchMentees,
+  })
 });
 
 // get request for profile route

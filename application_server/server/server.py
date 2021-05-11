@@ -73,6 +73,7 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
         return response
 
     def CreateMentor(self, request, context):
+        print("CreateMentor inside the application server")
         print(request)
         interestList = request.interest.split(",")
         GuruMatchDatabase.createMenteeAndMentor(
@@ -83,7 +84,63 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
             } )
         response = pb2.SuccessResponse(success = 1)
         return response
-        
+
+    def GetMatchMentors(self, request, context):
+        print("GetMatchMentors, inside the application server")
+        print(request)
+        userID = request.id
+        allMatchMentors = GuruMatchDatabase.getMatchMentors(userID)
+
+        # since we have repeated in protofile message MatchMentorResponse
+        # we have to run the for loop on reponse from the database and 
+        # put the value in protobuf and append in MatchMentorResponse
+        allMatchMentorToProto = pb2.MatchMentorResponse()
+        for aMentor in allMatchMentors:
+            responseMentorProto = pb2.MentorResponse()
+            responseMentorProto.interest[:] = aMentor["mentor"]["interest"]
+            responseMentorProto.mentorDescription = aMentor["mentor"]["mentor-description"]
+            allMatchMentorToProto.allMatchMentors.append(pb2.Mentor(
+                mentorID = aMentor["_id"],
+                userProfile = pb2.UserProfile(
+                    username = aMentor["profile"]["username"],
+                    userBio = aMentor["profile"]["userBio"],
+                    userDescription = aMentor["profile"]["userDescription"],
+                    userSkill = aMentor["profile"]["userSkill"],
+                    userIndustry = aMentor["profile"]["userIndustry"],
+                    userTag = aMentor["profile"]["userTag"],
+                    name = aMentor["profile"]["name"],
+                    profilePic = aMentor["profile"]["profilePic"],
+                ),
+                mentor = responseMentorProto
+            ))
+        return allMatchMentorToProto
+
+    def GetMatchMentees(self, request, context):
+        print("GetMatchMentees, inside the application server")
+        print(request)
+        userID = request.id
+        allMatchMentees = GuruMatchDatabase.getMatchMentees(userID)
+
+        allMatchMenteeToProto = pb2.MatchMenteeResponse()
+        for aMentee in allMatchMentees:
+            responseMenteeProto = pb2.MenteeResponse()
+            responseMenteeProto.interest[:] = aMentee["mentee"]["interest"]
+            responseMenteeProto.menteeDescription = aMentee["mentee"]["mentee-description"]
+            allMatchMenteeToProto.allMatchMentees.append(pb2.Mentee(
+                menteeID = aMentee["_id"],
+                userProfile = pb2.UserProfile(
+                    username = aMentee["profile"]["username"],
+                    userBio = aMentee["profile"]["userBio"],
+                    userDescription = aMentee["profile"]["userDescription"],
+                    userSkill = aMentee["profile"]["userSkill"],
+                    userIndustry = aMentee["profile"]["userIndustry"],
+                    userTag = aMentee["profile"]["userTag"],
+                    name = aMentee["profile"]["name"],
+                    profilePic = aMentee["profile"]["profilePic"],
+                ),
+                mentee = responseMenteeProto
+            ))
+        return allMatchMenteeToProto
 
     
 def run_server():
