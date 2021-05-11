@@ -1,4 +1,4 @@
-// python -m grpc_tools.protoc -I./proto --python_out=./server --grpc_python_out=./server ./proto/guruMatch.proto  == From application-server folder
+// python -m grpc_tools.protoc -I./proto --python_out=./server --grpc_python_out=./server ./proto/guruMatch.proto // From application-server folder
 syntax = "proto3";
 
 package guruMatchPackage;
@@ -24,10 +24,69 @@ message UserFormData {
     string userSkill = 5;
     string userIndustry = 6;
     string userTag = 7;
+    string profilePic = 8;
+}
+
+message UserProfile {
+    string username = 1;
+    string userBio = 2;
+    string userDescription = 3;
+    string userSkill = 4;
+    string userIndustry = 5;
+    string userTag = 6;
+    string name = 7;
+    string profilePic = 8;
+}
+
+message CreateMenteeRequest {
+    string id = 1;
+    string interest = 2;
+    string menteeDescription = 3;
+}
+
+message CreateMentorRequest {
+    string id = 1;
+    string interest = 2;
+    string mentorDescription = 3;
+}
+
+message MentorResponse {
+    repeated string interest = 2;
+    string mentorDescription = 3;
+}
+
+message Mentor {
+    string mentorID = 1;
+    UserProfile userProfile = 2;
+    MentorResponse mentor = 3;
+}
+
+message MatchMentorResponse {
+    repeated Mentor allMatchMentors = 1;
+}
+
+message MenteeResponse {
+    repeated string interest = 2;
+    string menteeDescription = 3;
+}
+
+message Mentee {
+    string menteeID = 1;
+    UserProfile userProfile = 2;
+    MenteeResponse mentee = 3;
+}
+
+message MatchMenteeResponse {
+    repeated Mentee allMatchMentees = 1;
 }
 
 service GuruMatch {
     rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
     rpc IsUsernameExist (IDonlymessage) returns (SuccessResponse) {};
-    rpc StoreUserForm (UserFormData) returns (SuccessResponse) {}
+    rpc StoreUserForm (UserFormData) returns (SuccessResponse) {};
+    rpc GetUserProfile (IDonlymessage) returns (UserProfile) {};
+    rpc CreateMentee (CreateMenteeRequest) returns (SuccessResponse) {};
+    rpc CreateMentor (CreateMentorRequest) returns (SuccessResponse) {};
+    rpc GetMatchMentors (IDonlymessage) returns (MatchMentorResponse) {};
+    rpc GetMatchMentees (IDonlymessage) returns (MatchMenteeResponse) {};
 }

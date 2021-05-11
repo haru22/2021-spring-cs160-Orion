@@ -22,6 +22,23 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // facebook auth
 const FacebookStrategy = require('passport-facebook').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+// for upload image
+const multer = require('multer')
+
+
+// define storage for the image
+const Storage = multer.diskStorage({
+  destination: "./frontend/uploads",
+  filename:(req,file,callback) => {
+    callback(null, file.fieldname+"_"+Date.now()+path.extname(file.originalname));
+  }
+});
+
+// upload params for multer
+const upload = multer({
+  storage: Storage
+}).single('file');
+
 
 const app = express();
 const path = require("path");
@@ -101,15 +118,16 @@ app.post("/login", function (req, res, next) {
     req.logIn(user, async function(err) {
       if (err) { return next(err); }
       // here we will check if the user already fill up the form, 
-      //if not, then redirect to userForm page, else, redirect to home page
+      // if not, then redirect to userForm page, else, redirect to welcome page
       // if usernameExist is 2, then false, if 1 then true
-      let redirectURI = "/home";
       const userID = user._id.toString();
+      let redirectURI = "/welcome/" + userID;
       const usernameExist = await grpcClient.isUsernameExist(userID).catch((err) => console.log("ERROR: ", err))
       console.log("asdfasdf " + usernameExist)
       if (usernameExist == 2) {
         redirectURI = "/userForm/" + userID;
       }
+      console.log("HIAHSDFHSDFKAHDKGFHDFGHKASFHASd")
       return res.redirect(redirectURI);
     });
   })(req, res, next);
@@ -194,23 +212,79 @@ app.post("/register", function (req, res) {
   }
 });
 
+
+
 // get request for user-form 
 app.get("/userForm/:id", AuthenticationSuccess, function(req, res) {
   res.render("userdataForm", {id: req.params.id})
 });
 
-app.post("/userForm/:id", function(req, res) {
+app.post("/userForm/:id", upload, function(req, res) {
   const {username, userBio, userDescription, userSkills, userIndustry, userTag} = req.body;
-  console.log(username + " " + userBio+ " " +userDescription+ " " +userSkills+ " " +userIndustry+ " " +userTag)
+  const file = req.file.filename;
+  console.log(username + " " + userBio+ " " +userDescription+ " " +userSkills+ " " +userIndustry+ " " +userTag + " " + file)
   console.log("request: " + req.params.id)
   const userid = req.params.id
-  grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag);
+  grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag, file);
+  res.redirect("/welcome/" + userid)
+});
+
+// get request for welcome route
+app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userId)
+  console.log("I am in welcome Page")
+  const json_userProfile = JSON.parse(userProfile)
+  const username = json_userProfile.username
+  console.log("username: " + username)
+  res.render("welcome", {username: username, id: userId});
 });
 
 // get request for home route
-app.get("/home", AuthenticationSuccess, function (req, res) {
-  res.render("home");
+app.get("/home/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userId)
+  const userMatchMentors = await grpcClient.getMatchMentors(userId)
+  const userMatchMentees = await grpcClient.getMatchMentees(userId)
+  const json_userProfile = JSON.parse(userProfile)
+  const json_userMatchMentors = JSON.parse(userMatchMentors)
+  const json_userMatchMentees = JSON.parse(userMatchMentees)
+  console.log(json_userMatchMentors.allMatchMentors)
+  res.render("home", {
+    id: userId, 
+    userProfile: json_userProfile, 
+    mentorsMatch: json_userMatchMentors.allMatchMentors, 
+    menteesMatch: json_userMatchMentees.allMatchMentees,
+  })
 });
+
+// get request for profile route
+app.get("/profile/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userId)
+  const json_userProfile = JSON.parse(userProfile)
+  console.log(json_userProfile)
+  res.render("profile", {userProfile: json_userProfile, id: userId})
+});
+
+// post request for creating mentee route 
+app.post("/createMentee/:id", AuthenticationSuccess, async function (req, res) {
+  const {interest, menteeDescription} = req.body;
+  const userId = req.params.id
+  console.log(interest + " " + menteeDescription)
+  grpcClient.createMentee(userId, interest, menteeDescription)
+  console.log("I am creating mentee")
+  res.redirect("/home/"+userId)
+})
+
+// post request for creating mentor route 
+app.post("/createMentor/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+  const {interest, mentorDescription} = req.body;
+  grpcClient.createMentor(userId, interest, mentorDescription)
+  console.log("i am creating a mentor")
+  res.redirect("/home/"+userId)
+})
 
 // Logout handler
 app.get("/logout", function(req, res) {
@@ -233,7 +307,7 @@ app.get("/auth/google/home",
     // here we will check if the user already fill up the form, 
     //if not, then redirect to userForm page, else, redirect to home page
     // if usernameExist is 2, then false, if 1 then true
-    let redirectURI = "/home";
+    let redirectURI = "/welcome";
     const usernameExist = await grpcClient.isUsernameExist(userID)
     console.log("asdfasdf " + usernameExist)
     if (usernameExist == 2) {
@@ -249,9 +323,8 @@ app.get("/auth/facebook",
 app.get("/auth/facebook/home",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/home');
+    // Successful authentication, redirect welcome.
+    res.redirect('/welcome');
   });
-
 
 

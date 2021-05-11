@@ -36,7 +36,7 @@ module.exports = {
     },
 
     storeUserForm: (id, username, user_bio, user_description, 
-        user_skill, user_industry, user_tag) => {
+        user_skill, user_industry, user_tag, profile_pic) => {
             const grpcRequest = {
                 "id": id,
                 "username": username,
@@ -44,15 +44,74 @@ module.exports = {
                 "userDescription": user_description,
                 "userSkill": user_skill,
                 "userIndustry": user_industry,
-                "userTag": user_tag
+                "userTag": user_tag,
+                "profilePic": profile_pic,
             }
-            let res = false;
+            let res = 2;
             client.StoreUserForm(grpcRequest, (err, response) => {
                 console.log("recieved from server (StoreUserForm) " + JSON.stringify(response));
             })
             return res
+    },
+
+    getUserProfile: async (id) => {
+        const grpcRequest = {
+            "id": id
+        };
+        let res = ""
+        res =  await client.GetUserProfile(grpcRequest);
+        return JSON.stringify(res)
+    }, 
+
+    createMentee: async (id, interests, description) => {
+        const grpcRequest = {
+            "id" : id,
+            "interest" : interests,
+            "menteeDescription" : description
+        };
+        let res = 2
+        res = await client.CreateMentee(grpcRequest);
+        return res;
+    },
+
+    createMentor: async (id, interests, description) => {
+        const grpcRequest = {
+            "id" : id,
+            "interest" : interests,
+            "mentorDescription" : description
+        };
+        let res = 2
+        res = await client.CreateMentor(grpcRequest);
+        return res;
+    },
+
+    getMatchMentors: async (id) => {
+        const grpcRequest = {
+            "id" : id
+        };
+        let res = await client.GetMatchMentors(grpcRequest);
+        return JSON.stringify(res);
+    },
+
+    getMatchMentees: async (id) => {
+        const grpcRequest = {
+            "id" : id
+        };
+        let res = await client.GetMatchMentees(grpcRequest);
+        //console.log(JSON.stringify(res))
+        return JSON.stringify(res);
     }
 }
+
+/** 
+async function getMatchMentors() {
+    const grpcRequest = {
+        "id" : "6095ab14b3e334370b1cf9cb",
+    };
+    res = await client.GetMatchMentors(grpcRequest);
+}
+
+getMatchMentors() ;*/
 
 
 

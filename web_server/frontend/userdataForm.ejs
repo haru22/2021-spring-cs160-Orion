@@ -38,7 +38,8 @@
         </script>
       </head>
 <body>
-    <form action="/userForm/<%= id%>" method="POST" class="row g-3" id="user-form">
+    <!-- 5/5 -->
+    <form action="/userForm/<%=id%>" method="POST" class="row g-3" id="user-form" enctype="multipart/form-data">
         <div class="col-m-6">
             <label class="form-label">Username</label>
             <textarea class="form-control" name="username" rows="1"></textarea>
@@ -62,6 +63,11 @@
         <div>
             <label>tag</label>
             <textarea class="form-control" name="userTag" rows="2"></textarea>
+        </div>
+        <div>
+            <label for="image">Upload Profile Image   </label>
+            <input type="file" name="file" id="image" class="form-control">
+
         </div>
         <input id="userFrom-SubmitButton" class="btn btn-primary mb-3" type="submit" value="Submit">
     </form>

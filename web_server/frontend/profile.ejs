@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>GuruMatch</title>
+
+    <!-- css link-->
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- bootstrap 5.0 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="row mx-auto my-auto">
+      <div class="col-md-2">
+        <div class="" style="height:10%; width:100%;top:5rem;position:relative;">
+          <span class="homeMiniText"><img src="../img/booksLogo.png" style="width:15px; height:15px; margin: auto; font-size: 1rem; float:left;">GURUMACH</span>
+          <span class="homeMiniText"><img src="../img/booksLogo.png" style="width:15px; height:15px; margin: auto; font-size: 1rem; float:left;">GURUMACH</span>
+          <span class="homeMiniText"><img src="../img/booksLogo.png" style="width:15px; height:15px; margin: auto; font-size: 1rem; float:left;">GURUMACH</span>
+        </div>
+        <div class="mx-auto leftMenu" style="margin-top: 8rem;margin-bottom: 8rem;">
+          <a href="/home/<%=id%>"><div class="leftMenuItem"><i class="fa fa-home" ></i>&nbsp;&nbsp;Home</div></a>
+          <a href="/profile/<%=id%>"><div class="leftMenuItem"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</div></a>
+          <div class="leftMenuItem"><i class="fa fa-bell"></i>&nbsp;&nbsp;Notification</div>
+          <hr class="profileLine">
+          <label class="usernameProfile"><%=userProfile.username%></label>
+          <a href="/logout"><div class="usernameItem"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</div></a>
+        </div>
+      </div>
+
+      <div class="container col-md-10" style=" background-color: white; border-radius: 20px; ">
+        <div class="row">
+            <div class="col-md-4" style="text-align: center; border-radius: 20px; background-color: rgb(243, 243, 243); height: 50%; margin-top: 4%; margin-left: 3%; margin-bottom: 10%;">
+                <label style="padding-top: 2%; font-size: larger; font-weight: bolder;">Profile</label>
+                <div class="row">
+                        <img class="image-profile w-100" src="../img/person7.jpeg" alt="Avatar">
+                </div>
+                <div class="row">
+                    <label style="font-size: larger; font-weight: bolder;"><%=userProfile.name%></label>
+                </div>
+            </div>
+            <div class="col" style="padding-top: 5%; padding-left: 3%;">
+                <div class="row">
+                    <label class="description-profile-ques">About MySelf</label>
+                    <label class="description-profile"><%=userProfile.userBio%></label>
+                    <label class="description-profile-ques" style="padding-top: 3%;">Skills: </label>
+                    <label class="description-profile"><%=userProfile.userSkill%></label> 
+                    <label class="description-profile-ques" style="padding-top: 3%;">Industry</label>
+                    <label class="description-profile"><%=userProfile.userIndustry%></label> 
+                    <label class="description-profile-ques" style="padding-top: 3%;">Description</label>
+                    <label class="description-profile"><%=userProfile.userDescription%></label> 
+                    <label class="description-profile-ques" style="padding-top: 3%;">Tag</label>
+                    <label class="description-profile"> <%=userProfile.userTag%> </label>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+  </div>
+  </body>
+</html>

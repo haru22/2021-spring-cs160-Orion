@@ -1,34 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Home</title>
-    
-        <!-- css link-->
-        <link rel="stylesheet" href="css/styles.css" />
-    
-        <!-- bootstrap 5.0 -->
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-          crossorigin="anonymous"
-        />
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-          crossorigin="anonymous"
-        ></script>
-        <!-- Google Font -->
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-<body>
-    <h1 class="mt-4">GuruMatch</h1>
-    <p class="lead mb-3">Welcome user </p>
-    <a href="logout" class="btn btn-secondary">Logout</a>
-</body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>GuruMatch</title>
+
+    <!-- css link-->
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- bootstrap 5.0 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="row col-md-12 h-100">
+    <div class="row mx-auto my-auto">
+      <div class="col-md-2">
+        <div class="" style="height:10%; width:100%;top:5rem;position:relative;">
+          <span class="homeMiniText"><img src="../img/booksLogo.png" style="width:15px; height:15px; margin: auto; font-size: 1rem; float:left;">GURUMACH</span>
+          <span class="homeMiniText"><img src="../img/booksLogo.png" style="width:15px; height:15px; margin: auto; font-size: 1rem; float:left;">GURUMACH</span>
+          <span class="homeMiniText"><img src="../img/booksLogo.png" style="width:15px; height:15px; margin: auto; font-size: 1rem; float:left;">GURUMACH</span>
+        </div>
+        <div class="mx-auto leftMenu" style="margin-top: 8rem;margin-bottom: 8rem;">
+          <div class="leftMenuItem"><i class="fa fa-home" ></i>&nbsp;&nbsp;Home</div>
+          <a href="/profile/<%=id%>"><div class="leftMenuItem"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</div></a>
+          <div class="leftMenuItem"><i class="fa fa-bell"></i>&nbsp;&nbsp;Notification</div>
+        </div>
+      </div>
+      <div class="col-md-10 mx-auto h-100" style="padding-top: 2rem;">
+        <div class="card col-md-10 mx-auto h-100 w-100" style="" id="login-card">
+          <div id="main_home" style="margin-bottom:1rem; display: block; overflow-y: scroll;">
+            <div>
+              <img src="../img/ondulatedDiv.png" style="border-radius:32px 32px 0px 0px; width:100%; height: 40vh;"/>
+              <div style="position:absolute; top: 2rem;left: 2rem;">
+                <div style="margin-bottom:2rem; text-align:left; margin-left:2rem;">I am looking for a <select><option value=""></option><option value="Mentor">Mentor</option><option value="Mentee">Mentee</option></select></div>
+                <div><img src="../img/Group 1279.png" style="margin-left:1rem;"/><img src="../img/Group 1280.png" style="margin-left:1rem;"/><img src="../img/Group 1281.png" style="margin-left:1rem;"/></div>
+              </div>
+            </div>
+            <div>
+              <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Recomended</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Art</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Math</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Physic</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Chemistry</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sport</a></li>
+                  </ul>
+                  <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  </form>
+                </div>
+              </nav>
+            </div>
+            <div style="text-align: left;margin-left: 10px;">
+              <h5>Mentees</h5>
+            </div>
+            <div style="margin-bottom:1.2rem;">
+              <div class="col-md-2" style="float:left;">
+                <a href="#" id="createMenteeButton">
+                <div class="card col-md-12 mx-auto cardAd" style="height:145px; width:175px;" id="card">
+                  <img src="../img/add.png" style="width:44px;margin-left: auto;margin-right: auto;margin-top: auto;"/>
+                  <h5 class="cardCreation">Create new card</h5>
+                  <p class="typeOfCardCreate">Mentee</p>
+                </div>
+              </a>
+              </div>
+              <div class="col-md-10" style="overflow-x: scroll;">
+                <div style="overflow: scroll; width: max-content; height:151px;">
+                  <% menteesMatch.forEach(element => { %> 
+                    <a href="">
+                      <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;<%= element.userProfile.username%></div>
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';"><%= element.mentee.menteeDescription%></div>
+                        <div class="row col-md-12">
+                          <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-info" style="margin-left: 5px ;"><%=element.mentee.interest.toString()%></span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentee</div>
+                        </div>
+                      </div>
+                    </a>
+                  <%});%>
+                
+              </div>
+            </div>
+            <div style="text-align: left;margin-left: 10px;">
+              <h5>Mentors</h5>
+            </div>
+            <div style="margin-bottom:1.2rem;">
+              <div class="col-md-2" style="float:left;">
+                <a href="#" id="createMentorButton">
+                <div class="card col-md-12 mx-auto cardAd" style="height:145px; width:175px;" id="card">
+                  <img src="../img/add.png" style="width:44px;margin-left: auto;margin-right: auto;margin-top: auto;"/>
+                  <h5 class="cardCreation">Create new card</h5>
+                  <p class="typeOfCardCreate">Mentor</p>
+                </div>
+              </a>
+              </div>
+              <div class="col-md-10" style="overflow-x: scroll">
+                <div style="overflow: scroll; width:max-content; height:151px;">
+                  <% mentorsMatch.forEach(element => { %> 
+                    <a href="">
+                      <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;<%= element.userProfile.username%></div>
+                        <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';"><%= element.mentor.mentorDescription%></div>
+                        <div class="row col-md-12">
+                          <div class="col-md-4" style="float:left;font-size: 16px;color: #ffffff;font-weight: 500;font-family: 'Roboto';"><span class="badge bg-info" style="margin-left: 5px ;"><%=element.mentor.interest.toString()%></span></div><div class="col-md-4"></div><div class="col-md-4" style="color: #4f5d75;font-weight: 500;font-family: 'Roboto';">Mentor</div>
+                        </div>
+                      </div>
+                    </a>
+                  <%});%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-mentee">
+    <div class="menteeModal-content">
+      <div class="close-mentee">+</div>
+      <img src="" alt="">
+      <form action="/createMentee/<%=id%>" method="POST">
+        <label> Hi <%= userProfile.name%> </label> <br>
+        <label > What subject you want us to find the mentor? </label>
+        <textarea id="interestInput-modal" placeholder="Type your interest with comma separated" name="interest" rows="1"></textarea>
+        <label> Short description about yourself and your chosen topic </label>
+        <textarea id="descriptionInput-modal" placeholder="Type some description about yourself and what kind of topic you want to study with match mentor" name="menteeDescription" rows="7"></textarea>
+        <input class="btn btn-primary" type="submit" value="submit">
+      </form>
+    </div>
+  </div>
+  <div class="modal-mentor">
+    <div class="mentorModal-content">
+      <div class="close-mentor">+</div>
+      <img src="" alt="">
+      <form action="/createMentor/<%=id%>" method="POST">
+        <label> Hi <%= userProfile.name%> </label> <br>
+        <label> Thank you for choosing to be a mentor, your kindness and compassion is appreciated</label>
+        <br><br>
+        <label > What subject you want to teach? </label>
+        <textarea id="interestInput-modal" placeholder="Type your interest with comma separated" name="interest" rows="1"></textarea>
+        <label> Short description about yourself and what mentee you looking for? </label>
+        <textarea id="descriptionInput-modal" placeholder="Type some description about yourself and what type of mentee you want to teach" name="mentorDescription" rows="7"></textarea>
+        <input class="btn btn-primary" type="submit" value="submit">
+      </form>
+    </div>
+  </div>
+  <script>
+    document.getElementById("createMenteeButton").addEventListener("click", function() {
+      document.querySelector(".modal-mentee").style.display = "flex";
+      console.log("Pressess Mentee");
+    });
+
+    document.querySelector(".close-mentee").addEventListener("click", () => document.querySelector(".modal-mentee").style.display = "none")
+
+    document.getElementById("createMentorButton").addEventListener("click", function() {
+      document.querySelector(".modal-mentor").style.display = "flex";
+      console.log("Pressesss Mentor ");
+    });
+
+    document.querySelector(".close-mentor").addEventListener("click", () => document.querySelector(".modal-mentor").style.display = "none")
+  </script>
+  </body>
 </html>
