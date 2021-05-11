@@ -167,14 +167,15 @@ class GuruMatchDatabase(object):
                         pass
         return listOfReturnUser
 
-GuruMatchDatabase.initialize()
+# Just for Testing
+#GuruMatchDatabase.initialize()
 #print(GuruMatchDatabase.isUsernameExist("633d25d5"))
 #GuruMatchDatabase.insertNewUser({"_id": "1345234ee", "name": "David Beckham"})
 #GuruMatchDatabase.insertUserForm("1345234ee", {"profile.username": "Kicker", "profile.userBio": "I am soccer player"})
 #print(GuruMatchDatabase.getUserProfile("608888188def3a0ceded6f12"))
 #608895309e12f61b99d44169
 #")))
-print("final : ", GuruMatchDatabase.getMatchMentors("60944967595c0ef62c396663"))
+#print("final : ", GuruMatchDatabase.getMatchMentors("60944967595c0ef62c396663"))
 
         
 
