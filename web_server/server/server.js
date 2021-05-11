@@ -127,6 +127,7 @@ app.post("/login", function (req, res, next) {
       if (usernameExist == 2) {
         redirectURI = "/userForm/" + userID;
       }
+      console.log("HIAHSDFHSDFKAHDKGFHDFGHKASFHASd")
       return res.redirect(redirectURI);
     });
   })(req, res, next);
@@ -225,8 +226,6 @@ app.post("/userForm/:id", upload, function(req, res) {
   console.log("request: " + req.params.id)
   const userid = req.params.id
   grpcClient.storeUserForm(userid, username, userBio, userDescription, userSkills, userIndustry, userTag, file);
-  
-
   res.redirect("/welcome/" + userid)
 });
 
@@ -234,6 +233,7 @@ app.post("/userForm/:id", upload, function(req, res) {
 app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
   const userId = req.params.id
   const userProfile = await grpcClient.getUserProfile(userId)
+  console.log("I am in welcome Page")
   const json_userProfile = JSON.parse(userProfile)
   const username = json_userProfile.username
   console.log("username: " + username)
@@ -244,8 +244,18 @@ app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
 app.get("/home/:id", AuthenticationSuccess, async function (req, res) {
   const userId = req.params.id
   const userProfile = await grpcClient.getUserProfile(userId)
+  const userMatchMentors = await grpcClient.getMatchMentors(userId)
+  const userMatchMentees = await grpcClient.getMatchMentees(userId)
   const json_userProfile = JSON.parse(userProfile)
-  res.render("home", {userProfile: json_userProfile, id: userId})
+  const json_userMatchMentors = JSON.parse(userMatchMentors)
+  const json_userMatchMentees = JSON.parse(userMatchMentees)
+  console.log(json_userMatchMentors.allMatchMentors)
+  res.render("home", {
+    id: userId, 
+    userProfile: json_userProfile, 
+    mentorsMatch: json_userMatchMentors.allMatchMentors, 
+    menteesMatch: json_userMatchMentees.allMatchMentees,
+  })
 });
 
 // get request for profile route
