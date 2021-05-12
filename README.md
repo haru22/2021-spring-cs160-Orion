@@ -38,5 +38,5 @@ pytest test.py
 ```
 #### New Members
 New team members can review code and create a new branch to add or implement features. 
-The branch will be reviewed and merged when changes are accecpted by the team.
+The branch will be reviewed and merged when changes are acccepted by the team.
 
