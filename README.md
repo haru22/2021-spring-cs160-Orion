@@ -1,9 +1,8 @@
 # 2021-spring-cs160-Orion
 
 ## _Mentor and Mentee Match_
-```sh
 Welcome to our GuruMatch Application
-```
+
 ## Requirements
 ```sh
 pip3 install 'pymongo[srv]'
@@ -11,9 +10,7 @@ pip3 install pymongo
 pip3 install grpc
 ```
 ### Run the project 
-```sh
 Open two terminals where the file directory is located
-```
 #### 1: start the web server
 ```sh
 #first terminal
@@ -40,7 +37,6 @@ source myenv/bin/activate
 pytest test.py
 ```
 #### New Members
-```sh
-New team members can review code and create branch if they want to add or implement features. 
-The branch will be reviewed and merged if changes are accecpted by the team.
-```
+New team members can review code and create a new branch to add or implement features. 
+The branch will be reviewed and merged when changes are accecpted by the team.
+
