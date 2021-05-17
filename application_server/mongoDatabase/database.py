@@ -32,6 +32,37 @@ class GuruMatchDatabase(object):
         GuruMatchDatabase.DATABASE['user-db'].insert_one({"_id": userId, "profile":{"name": name}, "mentee": {}, "mentor":{}})
 
     @staticmethod
+    def insertMenteeSelectedMentor(mentorID, menteeID):
+        """
+        when mentee select the mentor, then we will store the menteeID in mentor matching document based by mentorID
+        """
+        print("inserting the mentor that mentee want to Match")
+        GuruMatchDatabase.DATABASE['matchingDatabase'].update_one(
+            {"_id": mentorID},
+            {
+                "$push":{"mentee": menteeID}
+            },
+            upsert = True)
+    
+    @staticmethod
+    def insertMentorSelectedMentee(menteeID, mentorID):
+        print("inserting the mentee that mentor want to teach")
+        GuruMatchDatabase.DATABASE['matchingDatabase'].update_one(
+            {"_id": menteeID},
+            {
+                "$push":{"mentor": mentorID}
+            },
+            upsert = True)
+    
+    @staticmethod
+    def getAllMatchRequest(userID):
+        print("Getting all the matches request")
+        res = GuruMatchDatabase.DATABASE['matchingDatabase'].find_one({"_id" : userID}, {"_id": 0})
+        print(res)
+        return res
+
+
+    @staticmethod
     def insertUserForm(userId, userFormData):
         print("inserting User Form data")
         # we dont need to check the userId, because we authenticate the use before using this 
@@ -79,7 +110,7 @@ class GuruMatchDatabase(object):
             try:
                 while( currentNumberOfUser < totalUserReturn):
                     currentCursor = alluser.next()
-                    if (currentCursor["_id"] == userId or len(currentCursor["mentor"]) == 0 or currentCursor["mentor"]["interest"] is not None):
+                    if (currentCursor["_id"] == userId or (len(currentCursor["mentor"]) == 0 or currentCursor["mentor"]["interest"] is None)):
                         continue
                     listOfReturnUser.append(currentCursor)
                     currentNumberOfUser += 1
@@ -135,7 +166,7 @@ class GuruMatchDatabase(object):
             try:
                 while( currentNumberOfUser < totalUserReturn):
                     currentCursor = alluser.next()
-                    if (currentCursor["_id"] == userId or len(currentCursor["mentee"]) == 0 or currentCursor["mentee"]["interest"] is not None):
+                    if (currentCursor["_id"] == userId or len(currentCursor["mentee"]) == 0 or currentCursor["mentee"]["interest"] is None):
                         continue
                     listOfReturnUser.append(currentCursor)
                     currentNumberOfUser += 1
@@ -152,7 +183,6 @@ class GuruMatchDatabase(object):
                     else:
                         continue
             except StopIteration:
-                print("asdfasdf")
                 if (len(listOfReturnUser) < totalUserReturn):
                     try:
                         alluser = GuruMatchDatabase.DATABASE["user-db"].find()
@@ -176,6 +206,8 @@ class GuruMatchDatabase(object):
 #608895309e12f61b99d44169
 #")))
 #print("final : ", GuruMatchDatabase.getMatchMentors("60944967595c0ef62c396663"))
+#GuruMatchDatabase.insertMentorMatch("60944967595c0ef62c396663", "6095b0890d71363c20c3ddbe")
+#print(GuruMatchDatabase.getMatchMentors("609c6fb9984f29493e5419ea"))
 
         
 

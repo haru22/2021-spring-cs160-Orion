@@ -4,13 +4,6 @@ const caller = require("grpc-caller");
 const { response } = require("express");
 const protopath = __dirname + "/guruMatch.proto"
 const client = caller("localhost:50051", protopath, "GuruMatch");
-/*
-const packageDef = protoLoader.loadSync(protopath, {});
-const grpcObject = grpc.loadPackageDefinition(packageDef);
-const guruMatchPackage = grpcObject.guruMatchPackage;
-
-const client = new guruMatchPackage.GuruMatch("localhost:50051", grpc.credentials.createInsecure());
-*/
 
 module.exports = {
     createUser: (id, name) => {
@@ -31,7 +24,6 @@ module.exports = {
         // if 1, then show the homepage
         let usernameExist = 2;
         usernameExist = await client.IsUsernameExist(grpcRequest);//.then(res => {usernameExist = res});
-        console.log("Hello " + usernameExist.success)
         return usernameExist.success;
     },
 
@@ -100,18 +92,45 @@ module.exports = {
         let res = await client.GetMatchMentees(grpcRequest);
         //console.log(JSON.stringify(res))
         return JSON.stringify(res);
+    },
+
+    insertMentorSelectedMentee: async (menteeID, mentorID) => {
+        console.log("menteeID : " + menteeID  + "mentorID : " + mentorID)
+        const grpcRequest = {
+            "menteeID" : menteeID,
+            "mentorID" : mentorID
+        };
+        let res = await client.InsertMentorSelectedMentee(grpcRequest);
+        return JSON.stringify(res);
+    },
+
+    insertMenteeSelectedMentor: async (menteeID, mentorID) => {
+        console.log("menteeID : " + menteeID  + "mentorID : " + mentorID)
+        const grpcRequest = {
+            "menteeID" : menteeID,
+            "mentorID" : mentorID
+        };
+        let res = await client.InsertMenteeSelectedMentor(grpcRequest);
+        return JSON.stringify(res);
+    },
+
+    getAllMatches: async (userID) => {
+        const grpcRequest = {
+            "id" : userID
+        };
+        let res = await client.GetAllMatchesRequest(grpcRequest);
+        return JSON.stringify(res);
     }
 }
 
-/** 
-async function getMatchMentors() {
+/*
+async function test(userID) {
     const grpcRequest = {
-        "id" : "6095ab14b3e334370b1cf9cb",
+        "id" : userID
     };
-    res = await client.GetMatchMentors(grpcRequest);
-}
-
-getMatchMentors() ;*/
+    let res = await client.GetAllMatchesRequest(grpcRequest).then(result => {return result});
+    return JSON.stringify(res);
+}*/
 
 
 

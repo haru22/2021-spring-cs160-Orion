@@ -142,6 +142,37 @@ class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
             ))
         return allMatchMenteeToProto
 
+    def InsertMentorSelectedMentee(self, request, context):
+        """
+        when mentor selected the mentee, we will store the 
+        mentorId in mentee matchingDAtabase collection
+        """
+        menteeID = request.menteeID
+        mentorID = request.mentorID
+        GuruMatchDatabase.insertMentorSelectedMentee(menteeID, mentorID)
+        return 1
+    
+    def InsertMenteeSelectedMentor(self, request, context):
+        menteeID = request.menteeID
+        mentorID = request.mentorID
+        GuruMatchDatabase.insertMenteeSelectedMentor(mentorID, menteeID)
+        return 1
+
+    def GetAllMatchesRequest(self, request, context):
+        userID = request.id
+        responseFromDB = GuruMatchDatabase.getAllMatchRequest(userID)
+        if (responseFromDB is None):
+            context.set_code(grpc.StatusCode.NOT_FOUND)
+            context.set_details("this user have no matches currently")
+            return pb2.AllMatches()
+        allMatchesToProto = pb2.AllMatches()
+        for allMenteeMatches in responseFromDB["mentee"]:
+            allMatchesToProto.allMenteeRequest.append(allMenteeMatches)
+        for allMentorMatches in responseFromDB["mentor"]:
+            allMatchesToProto.allMentorRequest.append(allMentorMatches)
+        return allMatchesToProto
+        
+
     
 def run_server():
     # start the database server

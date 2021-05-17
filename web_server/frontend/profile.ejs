@@ -38,7 +38,7 @@
         <div class="mx-auto leftMenu" style="margin-top: 8rem;margin-bottom: 8rem;">
           <a href="/home/<%=id%>"><div class="leftMenuItem"><i class="fa fa-home" ></i>&nbsp;&nbsp;Home</div></a>
           <a href="/profile/<%=id%>"><div class="leftMenuItem"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</div></a>
-          <div class="leftMenuItem"><i class="fa fa-bell"></i>&nbsp;&nbsp;Notification</div>
+          <a href="/notification/<%=id%>"><div class="leftMenuItem"><i class="fa fa-bell" data-count=<%=numOfMatch%>></i>&nbsp;&nbsp;Notification</div></a>
           <hr class="profileLine">
           <label class="usernameProfile"><%=userProfile.username%></label>
           <a href="/logout"><div class="usernameItem"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</div></a>

@@ -53,7 +53,7 @@ print("asdfasdf")
 #print("The response is " + str(response))
 
 req = pb2.IDonlymessage(id = "6095ab14b3e334370b1cf9cb")
-print(stub.GetMatchMentors(req))
+print(str(stub.GetAllMatchesRequest(req)))
 
 
 

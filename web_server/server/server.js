@@ -81,6 +81,7 @@ mongoose.set("useCreateIndex", true);
 
 // User model
 const {User, GuruMatchDBSchema} = require("../database/user");
+const { SSL_OP_EPHEMERAL_RSA } = require('constants');
 
 // frontend directory
 const frontendDir = path.join(__dirname, "../frontend");
@@ -127,7 +128,6 @@ app.post("/login", function (req, res, next) {
       if (usernameExist == 2) {
         redirectURI = "/userForm/" + userID;
       }
-      console.log("HIAHSDFHSDFKAHDKGFHDFGHKASFHASd")
       return res.redirect(redirectURI);
     });
   })(req, res, next);
@@ -237,7 +237,22 @@ app.get("/welcome/:id", AuthenticationSuccess, async function (req, res) {
   const json_userProfile = JSON.parse(userProfile)
   const username = json_userProfile.username
   console.log("username: " + username)
-  res.render("welcome", {username: username, id: userId});
+
+  // use below code for notification, which send the number of new match request 
+  // there may be error when user dont have match (in case when user is new and haven't)
+  // choose any mentor or mentee then return for allMatches will be None and get 
+  // NotFound Error from the server, so we have to use try and catch
+  // when catch the error, it will do nothing since numberOfMatches is already 0
+  let numberOfMatches = 0;
+  try {
+    const userAllMatches = await grpcClient.getAllMatches(userId)
+    console.log(userAllMatches)
+    const matches = JSON.parse(userAllMatches)
+    numberOfMatches = matches.allMentorRequest.length + matches.allMenteeRequest.length
+  }
+  catch (error) {
+  }
+  res.render("welcome", {username: username, id: userId, numOfMatch: numberOfMatches});
 });
 
 // get request for home route
@@ -249,12 +264,23 @@ app.get("/home/:id", AuthenticationSuccess, async function (req, res) {
   const json_userProfile = JSON.parse(userProfile)
   const json_userMatchMentors = JSON.parse(userMatchMentors)
   const json_userMatchMentees = JSON.parse(userMatchMentees)
-  console.log(json_userMatchMentors.allMatchMentors)
+
+  let numberOfMatches = 0;
+  try {
+    const userAllMatches = await grpcClient.getAllMatches(userId)
+    console.log(userAllMatches)
+    const matches = JSON.parse(userAllMatches)
+    numberOfMatches = matches.allMentorRequest.length + matches.allMenteeRequest.length
+  }
+  catch (error) {
+  }
+
   res.render("home", {
     id: userId, 
     userProfile: json_userProfile, 
     mentorsMatch: json_userMatchMentors.allMatchMentors, 
     menteesMatch: json_userMatchMentees.allMatchMentees,
+    numOfMatch: numberOfMatches
   })
 });
 
@@ -263,15 +289,28 @@ app.get("/profile/:id", AuthenticationSuccess, async function (req, res) {
   const userId = req.params.id
   const userProfile = await grpcClient.getUserProfile(userId)
   const json_userProfile = JSON.parse(userProfile)
-  console.log(json_userProfile)
-  res.render("profile", {userProfile: json_userProfile, id: userId})
+
+  let numberOfMatches = 0;
+  try {
+    const userAllMatches = await grpcClient.getAllMatches(userId)
+    console.log(userAllMatches)
+    const matches = JSON.parse(userAllMatches)
+    numberOfMatches = matches.allMentorRequest.length + matches.allMenteeRequest.length
+  }
+  catch (error) {
+  }
+
+  res.render("profile", {
+    userProfile: json_userProfile, 
+    id: userId,
+    numOfMatch: numberOfMatches
+  })
 });
 
 // post request for creating mentee route 
 app.post("/createMentee/:id", AuthenticationSuccess, async function (req, res) {
   const {interest, menteeDescription} = req.body;
   const userId = req.params.id
-  console.log(interest + " " + menteeDescription)
   grpcClient.createMentee(userId, interest, menteeDescription)
   console.log("I am creating mentee")
   res.redirect("/home/"+userId)
@@ -282,8 +321,62 @@ app.post("/createMentor/:id", AuthenticationSuccess, async function (req, res) {
   const userId = req.params.id
   const {interest, mentorDescription} = req.body;
   grpcClient.createMentor(userId, interest, mentorDescription)
-  console.log("i am creating a mentor")
   res.redirect("/home/"+userId)
+})
+
+// post request, when user mentor selected the mentee from the home page
+app.post("/createMenteeMatch/:mentorID/:menteeID", AuthenticationSuccess, async function (req, res) {
+  const menteeId = req.params.menteeID
+  const mentorId = req.params.mentorID
+  grpcClient.insertMentorSelectedMentee(menteeId, mentorId)
+  res.redirect("/home/"+mentorId)
+})
+
+// post request, when user mentee selected the mentor from home page, 
+app.post("/createMentorMatch/:menteeID/:mentorID", AuthenticationSuccess, async function (req, res) {
+  const menteeId = req.params.menteeID
+  const mentorId = req.params.mentorID
+  grpcClient.insertMenteeSelectedMentor(menteeId, mentorId)
+  res.redirect("/home/"+menteeId)
+})
+
+// get request for notification 
+app.get("/notification/:id", async function (req, res) {
+  const userID = req.params.id
+  const userProfile = await grpcClient.getUserProfile(userID)
+  const json_userProfile = JSON.parse(userProfile)
+  
+  // use below code for notification, which send the number of new match request 
+  var allMentorProfile = new Array();
+  var allMenteeProfile = new Array();
+  let numberOfMatches = 0;
+  try {
+    const userAllMatches = await grpcClient.getAllMatches(userID)
+    const matches = JSON.parse(userAllMatches)
+    numberOfMatches = matches.allMentorRequest.length + matches.allMenteeRequest.length
+
+    matches.allMentorRequest.forEach(async matchMentorID => {
+      console.log(matchMentorID)
+      const userProfile = await grpcClient.getUserProfile(matchMentorID)
+      const json_userProfile = JSON.parse(userProfile)
+      allMentorProfile.push(json_userProfile)
+    });
+
+    matches.allMenteeRequest.forEach(async matchMenteeID => {
+      console.log(matchMenteeID)
+      const userProfile = await grpcClient.getUserProfile(matchMenteeID)
+      const json_userProfile = JSON.parse(userProfile)
+      allMenteeProfile.push(json_userProfile)
+    });
+    await sleep(100)
+  } catch (error) {}
+  res.render("notification", {
+    id: userID,
+    userProfile: json_userProfile, 
+    allMatchMentor: allMentorProfile,
+    allMatchMentee: allMenteeProfile,
+    numOfMatch: numberOfMatches
+  })
 })
 
 // Logout handler
@@ -307,7 +400,7 @@ app.get("/auth/google/home",
     // here we will check if the user already fill up the form, 
     //if not, then redirect to userForm page, else, redirect to home page
     // if usernameExist is 2, then false, if 1 then true
-    let redirectURI = "/welcome";
+    let redirectURI = "/welcome/" + userID;
     const usernameExist = await grpcClient.isUsernameExist(userID)
     console.log("asdfasdf " + usernameExist)
     if (usernameExist == 2) {
@@ -327,4 +420,8 @@ app.get("/auth/facebook/home",
     res.redirect('/welcome');
   });
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+  
 
