@@ -80,6 +80,16 @@ message MatchMenteeResponse {
     repeated Mentee allMatchMentees = 1;
 }
 
+message MenteeAndMentorID {
+    string menteeID = 1;
+    string mentorID = 2;
+}
+
+message AllMatches {
+    repeated string allMenteeRequest = 1;
+    repeated string allMentorRequest = 2;
+}
+
 service GuruMatch {
     rpc CreateUser (CreateUserRequest) returns (SuccessResponse) {};
     rpc IsUsernameExist (IDonlymessage) returns (SuccessResponse) {};
@@ -89,4 +99,7 @@ service GuruMatch {
     rpc CreateMentor (CreateMentorRequest) returns (SuccessResponse) {};
     rpc GetMatchMentors (IDonlymessage) returns (MatchMentorResponse) {};
     rpc GetMatchMentees (IDonlymessage) returns (MatchMenteeResponse) {};
+    rpc InsertMentorSelectedMentee (MenteeAndMentorID) returns (SuccessResponse) {};
+    rpc InsertMenteeSelectedMentor (MenteeAndMentorID) returns (SuccessResponse) {};
+    rpc GetAllMatchesRequest (IDonlymessage) returns (AllMatches) {};
 }

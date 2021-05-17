@@ -39,7 +39,10 @@
         <div class="mx-auto leftMenu" style="margin-top: 8rem;margin-bottom: 8rem;">
           <div class="leftMenuItem"><i class="fa fa-home" ></i>&nbsp;&nbsp;Home</div>
           <a href="/profile/<%=id%>"><div class="leftMenuItem"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</div></a>
-          <div class="leftMenuItem"><i class="fa fa-bell"></i>&nbsp;&nbsp;Notification</div>
+          <a href="/notification/<%=id%>"><div class="leftMenuItem"><i class="fa fa-bell" data-count=<%=numOfMatch%>></i>&nbsp;&nbsp;Notification</div></a>
+          <hr class="profileLine">
+          <label class="usernameProfile"><%=userProfile.username%></label>
+          <a href="/logout"><div class="usernameItem"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</div></a>
         </div>
       </div>
       <div class="col-md-10 mx-auto h-100" style="padding-top: 2rem;">
@@ -87,7 +90,7 @@
               <div class="col-md-10" style="overflow-x: scroll;">
                 <div style="overflow: scroll; width: max-content; height:151px;">
                   <% menteesMatch.forEach(element => { %> 
-                    <a href="">
+                    <a href="#" class="createButtonToMatchWithMentee" menteeData = "<%=JSON.stringify(element)%>">
                       <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
                         <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;<%= element.userProfile.username%></div>
                         <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';"><%= element.mentee.menteeDescription%></div>
@@ -116,7 +119,7 @@
               <div class="col-md-10" style="overflow-x: scroll">
                 <div style="overflow: scroll; width:max-content; height:151px;">
                   <% mentorsMatch.forEach(element => { %> 
-                    <a href="">
+                    <a href="#" class="createButtonToMatchWithMentor" mentorData = "<%=JSON.stringify(element)%>">
                       <div class="card col-md-3 specCard" style="height:145px; width:387px;float: left; margin-right:1rem;" id="card">
                         <div class="col-md-12" style="text-align:left; padding-left:8px; color: #2d3142;font-size:24px;font-weight: 500;font-family: 'Roboto';"><img src="../img/person1.png" />&nbsp;&nbsp;<%= element.userProfile.username%></div>
                         <div class="col-md-12" style="text-align:left; padding-left:8px; padding-right: 3px; height:50px; font-size: 18px; color: #2d3142;font-family: 'Roboto';"><%= element.mentor.mentorDescription%></div>
@@ -134,6 +137,7 @@
       </div>
     </div>
   </div>
+  <!-- Pop Up Modal -->
   <div class="modal-mentee">
     <div class="menteeModal-content">
       <div class="close-mentee">+</div>
@@ -151,7 +155,6 @@
   <div class="modal-mentor">
     <div class="mentorModal-content">
       <div class="close-mentor">+</div>
-      <img src="" alt="">
       <form action="/createMentor/<%=id%>" method="POST">
         <label> Hi <%= userProfile.name%> </label> <br>
         <label> Thank you for choosing to be a mentor, your kindness and compassion is appreciated</label>
@@ -161,6 +164,78 @@
         <label> Short description about yourself and what mentee you looking for? </label>
         <textarea id="descriptionInput-modal" placeholder="Type some description about yourself and what type of mentee you want to teach" name="mentorDescription" rows="7"></textarea>
         <input class="btn btn-primary" type="submit" value="submit">
+      </form>
+    </div>
+  </div>
+
+  <div class="mentee-match">
+    <div class="mentorMatch-content">
+      <div class="close-menteeMatch">+</div>
+      <form action="/createMenteeMatch/<%=id%>/" method="POST" id = "mentee-match-form">
+        <div class="container" style="margin: 1.5%;">
+          <div class="row">
+              <div class="col-3 image">
+                <div class="trick"></div>
+                  <img src="../img/person7.jpeg">
+              </div>
+              <div class="col-9 mentorMatch-text">
+                <div class="row">
+                  <label class="description-profile-ques">Mentee Name</label>
+                  <label class="description-profile" id = "menteeName">menteeName</label>
+                  <label class="description-profile-ques" style="padding-top: 3%;">Mentee Bio</label>
+                  <label class="description-profile" id = "menteeBio">MenteeBio</label>
+                  <label class="description-profile-ques" style="padding-top: 3%;">Mentor's Industry or School</label>
+                  <label class="description-profile" id = "menteeIndustry">menteeIndustry</label>
+                  <label class="description-profile-ques" style="padding-top: 3%;">Mentee want to learn </label>
+                  <label class="description-profile" id = "menteeInterest">menteeInterest</label>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <label class="description-profile-ques" style="padding-top: 3%; text-align: left;">From the Mentee</label>
+            <label class="description-profile" style="text-align: left;" id = "menteeDescription">menteeDescription</label>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn btn-primary" style="margin-top: 4%;" id = "wantToMatchMentee">
+            </button>
+          </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mentor-match">
+    <div class="mentorMatch-content">
+      <div class="close-mentorMatch">+</div>
+      <form action="/createMentorMatch/<%=id%>/" method="POST" id = "mentor-match-form">
+        <div class="container" style="margin: 1.5%;">
+          <div class="row">
+              <div class="col-3 image">
+                <div class="trick"></div>
+                  <img src="../img/person7.jpeg">
+              </div>
+              <div class="col-9 mentorMatch-text">
+                <div class="row">
+                  <label class="description-profile-ques">Mentor Name</label>
+                  <label class="description-profile" id = "mentorName">mentorName</label>
+                  <label class="description-profile-ques" style="padding-top: 3%;">Mentor Bio</label>
+                  <label class="description-profile" id = "mentorBio">MentorBio</label>
+                  <label class="description-profile-ques" style="padding-top: 3%;">Mentor's Industry</label>
+                  <label class="description-profile" id = "mentorIndustry">mentorIndustry</label>
+                  <label class="description-profile-ques" style="padding-top: 3%;">Mentor wants to teach on</label>
+                  <label class="description-profile" id = "mentorInterest">mentorInterest</label>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+            <label class="description-profile-ques" style="padding-top: 3%; text-align: left;">From the Mentor</label>
+            <label class="description-profile" style="text-align: left;" id = "mentorDescription">mentorDescription</label>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn btn-primary" style="margin-top: 4%;" id = "wantToMatchMentor">
+            </button>
+          </div>
+      </div>
       </form>
     </div>
   </div>
@@ -178,6 +253,43 @@
     });
 
     document.querySelector(".close-mentor").addEventListener("click", () => document.querySelector(".modal-mentor").style.display = "none")
+
+    var userSelectMentee = document.getElementsByClassName("createButtonToMatchWithMentee");
+  
+    for(let i = 0; i < userSelectMentee.length; i++) {
+      userSelectMentee[i].addEventListener("click", function() {
+      document.querySelector(".mentee-match").style.display = "flex";
+      var menteeData = userSelectMentee[i].getAttribute("menteeData")
+      var menteeDataJson = JSON.parse(menteeData)
+      document.getElementById("menteeName").innerHTML = menteeDataJson.userProfile.name
+      document.getElementById("menteeBio").innerHTML = menteeDataJson.userProfile.userBio
+      document.getElementById("menteeIndustry").innerHTML = menteeDataJson.userProfile.userIndustry
+      document.getElementById("menteeInterest").innerHTML = menteeDataJson.mentee.interest
+      document.getElementById("menteeDescription").innerHTML = menteeDataJson.mentee.menteeDescription
+      document.getElementById("wantToMatchMentee").innerHTML = "I want to be a mentor of " + menteeDataJson.userProfile.name
+      document.getElementById("mentee-match-form").action += menteeDataJson.menteeID
+    });
+    }
+
+    document.querySelector(".close-menteeMatch").addEventListener("click", () => document.querySelector(".mentee-match").style.display = "none")
+
+    var userSelectMentor = document.getElementsByClassName("createButtonToMatchWithMentor");
+
+    for(let i = 0; i < userSelectMentor.length; i++) {
+      userSelectMentor[i].addEventListener("click", function() {
+      document.querySelector(".mentor-match").style.display = "flex";
+      var mentorData = userSelectMentor[i].getAttribute("mentorData")
+      var mentorDataJson = JSON.parse(mentorData)
+      document.getElementById("mentorName").innerHTML = mentorDataJson.userProfile.name
+      document.getElementById("mentorBio").innerHTML = mentorDataJson.userProfile.userBio
+      document.getElementById("mentorIndustry").innerHTML = mentorDataJson.userProfile.userIndustry
+      document.getElementById("mentorInterest").innerHTML = mentorDataJson.mentor.interest
+      document.getElementById("mentorDescription").innerHTML = mentorDataJson.mentor.mentorDescription
+      document.getElementById("wantToMatchMentor").innerHTML = "I want to match with the mentor " + mentorDataJson.userProfile.name
+      document.getElementById("mentor-match-form").action += mentorDataJson.mentorID
+    });
+    }
+    document.querySelector(".close-mentorMatch").addEventListener("click", () => document.querySelector(".mentor-match").style.display = "none")
   </script>
   </body>
 </html>

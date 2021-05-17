@@ -54,6 +54,21 @@ class GuruMatchStub(object):
                 request_serializer=guruMatch__pb2.IDonlymessage.SerializeToString,
                 response_deserializer=guruMatch__pb2.MatchMenteeResponse.FromString,
                 )
+        self.InsertMentorSelectedMentee = channel.unary_unary(
+                '/guruMatchPackage.GuruMatch/InsertMentorSelectedMentee',
+                request_serializer=guruMatch__pb2.MenteeAndMentorID.SerializeToString,
+                response_deserializer=guruMatch__pb2.SuccessResponse.FromString,
+                )
+        self.InsertMenteeSelectedMentor = channel.unary_unary(
+                '/guruMatchPackage.GuruMatch/InsertMenteeSelectedMentor',
+                request_serializer=guruMatch__pb2.MenteeAndMentorID.SerializeToString,
+                response_deserializer=guruMatch__pb2.SuccessResponse.FromString,
+                )
+        self.GetAllMatchesRequest = channel.unary_unary(
+                '/guruMatchPackage.GuruMatch/GetAllMatchesRequest',
+                request_serializer=guruMatch__pb2.IDonlymessage.SerializeToString,
+                response_deserializer=guruMatch__pb2.AllMatches.FromString,
+                )
 
 
 class GuruMatchServicer(object):
@@ -107,6 +122,24 @@ class GuruMatchServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def InsertMentorSelectedMentee(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def InsertMenteeSelectedMentor(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetAllMatchesRequest(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GuruMatchServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -149,6 +182,21 @@ def add_GuruMatchServicer_to_server(servicer, server):
                     servicer.GetMatchMentees,
                     request_deserializer=guruMatch__pb2.IDonlymessage.FromString,
                     response_serializer=guruMatch__pb2.MatchMenteeResponse.SerializeToString,
+            ),
+            'InsertMentorSelectedMentee': grpc.unary_unary_rpc_method_handler(
+                    servicer.InsertMentorSelectedMentee,
+                    request_deserializer=guruMatch__pb2.MenteeAndMentorID.FromString,
+                    response_serializer=guruMatch__pb2.SuccessResponse.SerializeToString,
+            ),
+            'InsertMenteeSelectedMentor': grpc.unary_unary_rpc_method_handler(
+                    servicer.InsertMenteeSelectedMentor,
+                    request_deserializer=guruMatch__pb2.MenteeAndMentorID.FromString,
+                    response_serializer=guruMatch__pb2.SuccessResponse.SerializeToString,
+            ),
+            'GetAllMatchesRequest': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllMatchesRequest,
+                    request_deserializer=guruMatch__pb2.IDonlymessage.FromString,
+                    response_serializer=guruMatch__pb2.AllMatches.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -293,5 +341,56 @@ class GuruMatch(object):
         return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/GetMatchMentees',
             guruMatch__pb2.IDonlymessage.SerializeToString,
             guruMatch__pb2.MatchMenteeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def InsertMentorSelectedMentee(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/InsertMentorSelectedMentee',
+            guruMatch__pb2.MenteeAndMentorID.SerializeToString,
+            guruMatch__pb2.SuccessResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def InsertMenteeSelectedMentor(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/InsertMenteeSelectedMentor',
+            guruMatch__pb2.MenteeAndMentorID.SerializeToString,
+            guruMatch__pb2.SuccessResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAllMatchesRequest(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/guruMatchPackage.GuruMatch/GetAllMatchesRequest',
+            guruMatch__pb2.IDonlymessage.SerializeToString,
+            guruMatch__pb2.AllMatches.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
