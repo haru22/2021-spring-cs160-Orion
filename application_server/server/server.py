@@ -10,8 +10,7 @@ from google.protobuf.json_format import MessageToDict
 # importing the automated grpc interface stub
 import guruMatch_pb2 as pb2
 import guruMatch_pb2_grpc as pb2_grpc
-sys.path.append("../")
-from mongoDatabase.database import GuruMatchDatabase
+from database import GuruMatchDatabase
 
 
 class GuruMatchServicer(pb2_grpc.GuruMatchServicer):
