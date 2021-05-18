@@ -276,6 +276,15 @@ separator:after {
 	color: #FFFFFF;
 }
 
+#faq-btn {
+	position: absolute;
+	width: 181px;
+	height: 34px;
+	left: 48px;
+	top: 540px;
+}
+
+
 #msg-btn {
 	position: absolute;
 	width: 157px;
@@ -823,4 +832,14 @@ html { overflow-y: scroll; overflow-x:hidden; }
     text-align: center;
     min-width: 2em;
     font: bold .6em sans-serif;
+}
+
+.faq-question {
+	font-weight: bolder;
+	font-size: large;
+	font-style: italic;
+}
+
+.faq-answer {
+	padding-bottom: 2%;
 }
