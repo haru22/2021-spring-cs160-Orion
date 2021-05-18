@@ -307,6 +307,21 @@ app.get("/profile/:id", AuthenticationSuccess, async function (req, res) {
   })
 });
 
+app.get("/faq/:id", AuthenticationSuccess, async function (req, res) {
+  const userId = req.params.id
+
+  let numberOfMatches = 0;
+  try {
+    const userAllMatches = await grpcClient.getAllMatches(userId)
+    console.log(userAllMatches)
+    const matches = JSON.parse(userAllMatches)
+    numberOfMatches = matches.allMentorRequest.length + matches.allMenteeRequest.length
+  }
+  catch (error) {
+  }
+  res.render("faq", {id: userId, numOfMatch: numberOfMatches})
+});
+
 // post request for creating mentee route 
 app.post("/createMentee/:id", AuthenticationSuccess, async function (req, res) {
   const {interest, menteeDescription} = req.body;

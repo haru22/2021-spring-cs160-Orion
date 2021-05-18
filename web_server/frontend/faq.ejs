@@ -38,40 +38,35 @@
         <div class="mx-auto leftMenu" style="margin-top: 8rem;margin-bottom: 8rem;">
           <a href="/home/<%=id%>"><div class="leftMenuItem"><i class="fa fa-home" ></i>&nbsp;&nbsp;Home</div></a>
           <a href="/profile/<%=id%>"><div class="leftMenuItem"><i class="fa fa-user"></i>&nbsp;&nbsp;Profile</div></a>
-          <div class="leftMenuItem"><i class="fa fa-bell" data-count=<%=numOfMatch%>></i>&nbsp;&nbsp;Notification</div>
-          <a href="/faq/<%=id%>"><div class="leftMenuItem"><i class="fa fa-question-circle"></i>&nbsp;&nbsp;FAQ</div></a>
+          <a href="/notification/<%=id%>"><div class="leftMenuItem"><i class="fa fa-bell" data-count=<%=numOfMatch%>></i>&nbsp;&nbsp;Notification</div></a>
           <hr class="profileLine">
-          <label class="usernameProfile"><%=userProfile.username%></label>
           <a href="/logout"><div class="usernameItem"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</div></a>
         </div>
       </div>
-      <div class="container col-md-10" style=" background-color: white; border-radius: 20px; ">
-      <div class="row">
-        <%allMatchMentee.forEach(element => { %> 
-        <div class="card col-9" style="margin-top: 3%; margin-left: 15%;" >
-          <div class="card-body" style="text-align: center;">
-            <h5 class="card-title">This mentee want to match with you</h5>
-            <h6 class="card-subtitle mb-2 text-muted"><%=element.name%></h6>
-            <p class="card-text"><%=element.userDescription%></p>
-            <a href="#" class="card-link">Match</a>
-            <a href="#" class="card-link">Unmatch</a>
-          </div>
-        </div>
-        <%});%>
-        <%allMatchMentor.forEach(element => { %> 
-          <div class="card col-9" style="margin-top: 3%; margin-left: 15%;" >
-            <div class="card-body" style="text-align: center;">
-              <h5 class="card-title">This mentor want to match with you</h5>
-              <h6 class="card-subtitle mb-2 text-muted"><%=element.name%></h6>
-              <p class="card-text"><%=element.userDescription%></p>
-              <a href="#" class="card-link">Match</a>
-              <a href="#" class="card-link">Unmatch</a>
-            </div>
-          </div>
-          <%});%>
-      </div>
-      </div>
 
-    </div>
-</body>
+      <div class="container col-md-10" style=" background-color: white; border-radius: 20px; ">
+        <div class="row" style="padding-top: 5%; padding-left: 8%;">
+          <label class="faq-question">1. Why I don't get any mentor match?</label>
+            <label class="faq-answer">Make sure that you fill up the mentee form if you want to be mentee and get mentor match. <br>
+              Step to create a mentee form: <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. go into home page<br>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. click create mentee square box at the beginning of list of mentee match <br>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Fill up all the field and submit
+            </label>
+            <label class="faq-question">2. Why I don't get any mentee match?</label>
+            <label class="faq-answer">Make sure that you fill up the mentor form if you want to be mentor and get mentee match. <br>
+              Step to create a mentor form: <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 1. go into home page<br>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 2. click create mentor square box at the beginning of list of mentor match <br>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 3. Fill up all the field and submit
+            </label>
+            <label class="faq-question">3. Why my notification page is white black?</label>   
+            <label class="faq-answer">You don't have any match as of right now. When you get match, you will the red number of <br>notification bell icon at the left side of page</label>   
+            <label class="faq-question">4. How to get match easier?</label>
+            <label class="faq-answer">Make sure your description was detail and respectful. Others looking for mentee and mentor<br> are reading your description and better description have better chance to match.</label>     
+            <label> If you have any questions and troubles with our application, please contact our email <a href = "mailto: customer-service@gurumatch.com">customer-service@gurumatch.com </a></label>
+          </div>
+      </div>
+      
+  </div>
+  </body>
 </html>
+
