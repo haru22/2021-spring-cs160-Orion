@@ -17,7 +17,7 @@ Open two terminals where the file directory is located
 cd 2021-spring-cs160-Orion
 cd web_server/server
 npm install
-nodemon server.js
+npm run start
 ```
 #### 2: start the application server
 ```sh
