@@ -23,7 +23,9 @@ npm run start
 ```sh
 #open second terminal
 cd 2021-spring-cs160-Orion
-cd application_server/server
+cd application_server
+pip install -r requirement.txt
+cd server
 python server.py  # or python3 server.py
 ```
 #### then open the web browser
