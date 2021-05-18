@@ -1,3 +1,5 @@
-pip3 install 'pymongo[srv]'
-pip3 install pymongo
-pip3 install grpc
+grpcio==1.37.0
+grpcio-reflection==1.37.0
+grpcio-tools==1.35.0
+pymongo==3.11.3
+dnspython==1.16.0
